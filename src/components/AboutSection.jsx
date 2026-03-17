@@ -47,13 +47,11 @@ export function AboutSection() {
           {/* Visual */}
           <div className="relative" suppressHydrationWarning={true}>
             <div className="aspect-square rounded-2xl overflow-hidden bg-white border-4 border-white shadow-xl relative">
-              {/* Nature Dummy Video - High Performance Link */}
               <video
-                src="https://res.cloudinary.com/demo/video/upload/v1631232438/sea_turtle.mp4"
-                autoPlay
+                src="/media/video/eazyswitch-1.mp4"
+                autoPlay={false} 
                 loop
-                muted
-                playsInline
+                controls 
                 className="w-full h-full object-cover"
               />
 
