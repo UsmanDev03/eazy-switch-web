@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Menu } from "lucide-react";
 import { Sidebar } from "./sidebar";
 import ConsultationModal from "./ConsultationModal";
-
+import Link from "next/link";
 export function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,14 +16,17 @@ export function Navbar() {
           className="flex items-center justify-between"
           suppressHydrationWarning={true}
         >
-          <a href="/" className="text-3xl font-bold text-white tracking-tight">
+          <Link
+            href="/"
+            className="text-3xl font-bold text-white tracking-tight"
+          >
             Eazy Switch
-          </a>
+          </Link>
 
           <div className="flex items-center gap-4">
             <button
               onClick={() => setIsModalOpen(true)}
-              className="hidden md:inline-block px-6 py-3 bg-[#1a4d4d] hover:bg-[#133a3a] text-white font-medium rounded-full transition-colors text-center border border-white/10 cursor-pointer"
+              className="hidden md:inline-block px-6 py-3 bg-[#8b5aa6] hover:bg-[#724a8d] text-white font-medium rounded-full transition-colors text-center border border-white/10 cursor-pointer"
             >
               Secure your free energy review
             </button>
