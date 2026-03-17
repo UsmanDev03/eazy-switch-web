@@ -29,7 +29,7 @@ const differentiators = [
 export function Differentiators() {
   return (
     <section 
-      className="py-12 bg-white" 
+      className="py-12 bg-[#ECE7ED]" 
       suppressHydrationWarning={true}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">

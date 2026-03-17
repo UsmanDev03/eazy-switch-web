@@ -31,7 +31,7 @@ export function ServiceSection() {
   return (
     <section 
       id="services" 
-      className="py-24 bg-white" 
+      className="py-24 bg-[#F3EFF6]" 
       suppressHydrationWarning={true}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">

@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// Sirf in labels aur hrefs ko document ke mutabiq update kiya hai
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
@@ -30,8 +29,9 @@ const socialLinks = [
   { icon: Youtube, href: "#", label: "YouTube" },
 ];
 
-export function Sidebar({ isOpen, onClose }) {
-  // Prevent body scroll when sidebar is open
+// FIX 1: Yahan brackets ke andar 'setIsModalOpen' add kiya hai
+export function Sidebar({ isOpen, onClose, setIsModalOpen }) {
+  
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -79,12 +79,15 @@ export function Sidebar({ isOpen, onClose }) {
 
           {/* CTA Button */}
           <div className="px-6 pb-6">
-            <a
-              href="/free-review"
-              className="inline-block w-full px-6 py-3 bg-[#1a4d4d] hover:bg-[#133a3a] text-white font-medium rounded-full transition-colors text-center"
+            <button
+              onClick={() => {
+                onClose(); // Sidebar close hoga
+                if (setIsModalOpen) setIsModalOpen(true); // FIX 2: Check ke function exist karta hai ya nahi
+              }}
+              className="inline-block w-full px-6 py-3 bg-[#1a4d4d] hover:bg-[#133a3a] text-white font-medium rounded-full transition-colors text-center cursor-pointer border border-white/5 shadow-md active:scale-95"
             >
               Secure your free energy review
-            </a>
+            </button>
           </div>
 
           {/* Navigation */}
@@ -98,9 +101,6 @@ export function Sidebar({ isOpen, onClose }) {
                     onClick={onClose}
                   >
                     <span>{item.label}</span>
-                    {item.hasSubmenu && (
-                      <Plus className="w-5 h-5 text-gray-400 group-hover:text-[#1a4d4d] transition-colors" />
-                    )}
                   </a>
                 </li>
               ))}
