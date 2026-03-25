@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-
+import { HeroSection } from "@/components/hero-section";
+import { Footer } from "@/components/Footer";
 import "./globals.css";
 
 const geist = Geist({
@@ -62,8 +63,10 @@ export default function RootLayout({ children }) {
         className="font-sans antialiased bg-[#0f1113]" 
         suppressHydrationWarning={true}
       >
+         {/* <HeroSection /> */}
         {children}
-        <Analytics />
+        {/* <Analytics /> */}
+        <Footer/>
       </body>
     </html>
   );

@@ -1,101 +1,152 @@
 "use client";
 
-import React from "react"
-import { FileSignature, Gauge, Sun, ClipboardCheck, ArrowRight } from "lucide-react"
-import { Button } from "./ui/button"
+import React, { useState } from "react"
+import { Zap, Flame, Droplets, Network, Sun, ArrowRight, CheckCircle2 } from "lucide-react"
 
 const services = [
   {
-    icon: FileSignature,
-    title: "Smart Energy Contracts",
-    description: "We negotiate and secure energy contracts tailored to your business needs, ensuring competitive rates and favorable terms.",
+    id: "01",
+    icon: Zap,
+    title: "Business Electricity",
+    description: "Secure competitive commercial rates with flexible fixed-term contracts tailored to your usage patterns.",
+    features: ["Half-hourly metering", "Green energy options"]
   },
   {
-    icon: Gauge,
-    title: "Efficiency Optimization",
-    description: "Identify waste and optimize your energy consumption with our comprehensive efficiency assessments and solutions.",
+    id: "02",
+    icon: Flame,
+    title: "Commercial Gas",
+    description: "Protect your business from market volatility with smart gas procurement and strategic hedging.",
+    features: ["Market monitoring", "Multi-site billing"]
   },
   {
+    id: "03",
+    icon: Droplets,
+    title: "Water Management",
+    description: "Professional audits to identify leakages and streamline your water billing across all locations.",
+    features: ["Leak detection", "Bill validation"]
+  },
+  {
+    id: "04",
+    icon: Network,
+    title: "New Connections",
+    description: "End-to-end management for meter installations and site upgrades for expanding businesses.",
+    features: ["Infrastructure planning", "Fast-track setup"]
+  },
+  {
+    id: "05",
     icon: Sun,
-    title: "On-site Power Generation",
-    description: "Explore solar, battery storage, and other on-site generation options to reduce costs and increase energy independence.",
-  },
-  {
-    icon: ClipboardCheck,
-    title: "Regulatory Compliance",
-    description: "Navigate complex compliance requirements with expert guidance on ESOS, SECR, and other regulatory frameworks.",
+    title: "Solar & Renewables",
+    description: "Future-proof your business with zero-upfront solar installations and battery storage solutions.",
+    features: ["Zero-upfront cost", "Carbon reporting"]
   },
 ]
 
 export function ServiceSection() {
-  return (
-    <section 
-      id="services" 
-      className="py-24 bg-[#F3EFF6]" 
-      suppressHydrationWarning={true}
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          
-          {/* Left Side: Content + Image Box */}
-          <div className="lg:sticky lg:top-24 space-y-8" suppressHydrationWarning={true}>
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1a4d4d] mb-6 leading-[1.1]">
-                Comprehensive <span className="text-[#8b5aa6]">energy services</span>
-              </h2>
-              <p className="text-gray-500 text-lg leading-relaxed max-w-md">
-                Your business deserves solutions that work together seamlessly. We help you take control of costs while building a sustainable future.
-              </p>
-            </div>
+  const [activeIndex, setActiveIndex] = useState(0);
 
-            {/* Visual Element: Image with Overlay */}
-            <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-gray-50">
+  return (
+    <section id="services" className="py-12 md:py-20 bg-[#1a4d4d] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row justify-between items-center mb-10 md:mb-16 gap-6 text-center md:text-left">
+          <div className="max-w-2xl">
+            <span className="text-[#8dae39] font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">Our Expertise</span>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mt-2 leading-tight">
+              Solutions for <span className="text-[#8b5aa6]">Modern Business</span>
+            </h2>
+          </div>
+          <div className="hidden md:block h-12 w-[1px] bg-white/20 mx-8"></div>
+          <p className="text-gray-400 text-xs md:text-base max-w-[280px]">
+            Smart utility management powered by Eazy Switch innovation.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-12 gap-6 items-start">
+          
+          {/* Left: Dynamic Service Detail (Desktop Only) */}
+          <div className="hidden lg:block lg:col-span-5 relative">
+            <div className="sticky top-24 h-[450px] rounded-[2.5rem] overflow-hidden bg-[#163f3f] border border-white/5 shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800" 
-                alt="Modern Office"
-                className="w-full h-full object-cover"
+                src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=800&auto=format&fit=crop" 
+                alt="Business Energy"
+                className="w-full h-full object-cover opacity-30"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1a4d4d]/60 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/90 backdrop-blur-md rounded-2xl">
-                <p className="text-[#1a4d4d] font-bold text-sm uppercase tracking-widest mb-1">Tailored for you</p>
-                <p className="text-gray-600 text-sm">Customized energy strategies for UK businesses.</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1a4d4d] via-transparent to-transparent" />
+              
+              <div className="absolute bottom-8 left-8 right-8">
+                <div className="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10">
+                  <h4 className="text-white text-lg font-bold mb-3 flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-[#8dae39]" /> Included Features
+                  </h4>
+                  <ul className="space-y-2">
+                    {services[activeIndex].features.map((feature, i) => (
+                      <li key={i} className="text-gray-300 text-sm flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#8b5aa6]" /> {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Right Side: Services Cards Stack */}
-          <div className="space-y-6" suppressHydrationWarning={true}>
+          {/* Right: The Interactive List (Responsive) */}
+          <div className="lg:col-span-7 space-y-3 w-full">
             {services.map((service, index) => {
-              const Icon = service.icon
+              const Icon = service.icon;
+              const isActive = activeIndex === index;
+
               return (
                 <div
                   key={index}
-                  className="group p-8 rounded-[2rem] border border-gray-100 bg-gray-50/50 hover:bg-white hover:shadow-xl hover:border-[#8b5aa6]/30 transition-all duration-500"
-                  suppressHydrationWarning={true}
+                  onMouseEnter={() => setActiveIndex(index)}
+                  onClick={() => setActiveIndex(index)} // Mobile support
+                  className={`relative cursor-pointer transition-all duration-300 rounded-[1.2rem] md:rounded-[1.5rem] px-5 py-4 md:px-6 md:py-5 border ${
+                    isActive 
+                    ? "bg-white border-white shadow-xl translate-y-[-2px] md:translate-x-2" 
+                    : "bg-white/5 border-white/10 hover:bg-white/10"
+                  }`}
                 >
-                  <div className="flex gap-6">
-                    {/* Icon Box */}
-                    <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shrink-0 shadow-sm group-hover:bg-[#8b5aa6] transition-colors duration-500">
-                      <Icon className="w-7 h-7 text-[#1a4d4d] group-hover:text-white" />
-                    </div>
+                  <div className="flex items-center gap-4 md:gap-5">
+                    {/* Index Number */}
+                    <span className={`text-[10px] md:text-xs font-mono font-bold ${isActive ? "text-[#8b5aa6]" : "text-white/20"}`}>
+                      {service.id}
+                    </span>
                     
-                    <div className="space-y-3">
-                      <h3 className="font-bold text-xl text-[#1a4d4d]">
-                        {service.title}
-                      </h3>
-                      <p className="text-gray-500 leading-relaxed text-sm md:text-base">
-                        {service.description}
-                      </p>
-                      <Button 
-                        variant="link" 
-                        className="p-0 text-[#8b5aa6] hover:text-[#1a4d4d] font-bold flex items-center gap-2"
-                      >
-                        Learn details <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                      </Button>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <h3 className={`text-base md:text-xl font-bold truncate transition-colors ${isActive ? "text-[#1a4d4d]" : "text-white"}`}>
+                          {service.title}
+                        </h3>
+                        <div className={`p-2 rounded-lg transition-all shrink-0 ${isActive ? "bg-[#1a4d4d] text-[#8dae39]" : "bg-white/10 text-white"}`}>
+                          <Icon className="w-4 h-4 md:w-5 md:h-5" />
+                        </div>
+                      </div>
+
+                      {/* Expandable Content (Works on Tap for Mobile) */}
+                      <div className={`overflow-hidden transition-all duration-300 ${isActive ? "max-h-[200px] opacity-100 mt-3" : "max-h-0 opacity-0"}`}>
+                        <p className="text-gray-600 text-xs md:text-sm leading-relaxed mb-4">
+                          {service.description}
+                        </p>
+                        
+                        {/* Features visible on mobile inside the card when active */}
+                        <div className="lg:hidden mb-4 space-y-1">
+                           {service.features.map((f, i) => (
+                             <div key={i} className="text-[11px] text-[#1a4d4d]/70 flex items-center gap-2 italic">
+                               <CheckCircle2 className="w-3 h-3 text-[#8dae39]" /> {f}
+                             </div>
+                           ))}
+                        </div>
+
+                        <span className="inline-flex items-center gap-2 text-[10px] font-bold text-[#8b5aa6] uppercase tracking-wider">
+                          Learn More <ArrowRight className="w-3 h-3" />
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              )
+              );
             })}
           </div>
 

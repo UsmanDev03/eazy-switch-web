@@ -19,7 +19,7 @@ export default function Home() {
       <SuccessStories/>
       <Testimonials/>
       {/* <CTA/> */}
-      <Footer/>
+      {/* <Footer/> */}
     </main>
   );
 }

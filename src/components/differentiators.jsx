@@ -1,64 +1,67 @@
 "use client";
 
 import React from "react"
-import { ShieldCheck, Users, HeadphonesIcon, Eye } from "lucide-react"
+import { Handshake, Zap, LifeBuoy, SearchCheck } from "lucide-react"
 
 const differentiators = [
   {
-    icon: ShieldCheck,
-    title: "No quick sales",
-    description: "Ongoing support and long-term value, not just a transaction.",
+    icon: Handshake,
+    title: "Partner, Not Sales",
+    description: "Building long-term trust, not just closing short-term deals.",
   },
   {
-    icon: Users,
-    title: "One partner",
-    description: "Contracts, compliance, and efficiency managed in one place.",
+    icon: Zap,
+    title: "Direct Efficiency",
+    description: "Your entire energy portfolio managed under one expert roof.",
   },
   {
-    icon: HeadphonesIcon,
-    title: "Full support",
-    description: "We handle billing issues and market changes for you.",
+    icon: LifeBuoy,
+    title: "Always On Your Side",
+    description: "Real people solving your billing and market issues instantly.",
   },
   {
-    icon: Eye,
-    title: "Transparency",
-    description: "Upfront pricing with no hidden fees or surprise charges.",
+    icon: SearchCheck,
+    title: "Zero Hidden Fees",
+    description: "Total transparency with upfront pricing—no surprises, ever.",
   },
 ]
 
 export function Differentiators() {
   return (
     <section 
-      className="py-12 bg-[#ECE7ED]" 
+      className="py-16 bg-[#ECE7ED]" 
       suppressHydrationWarning={true}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="mb-14 text-center" suppressHydrationWarning={true}>
+        <div className="mb-12 text-center" suppressHydrationWarning={true}>
           <h2 className="text-3xl md:text-4xl font-bold text-[#1a4d4d] tracking-tight">
-            What makes us <span className="text-[#8b5aa6]">different?</span>
+            The <span className="text-[#8b5aa6]">Eazy Switch</span> Edge
           </h2>
+          <p className="mt-3 text-gray-600 font-medium text-sm md:text-base">
+            Where energy management meets simplicity.
+          </p>
         </div>
 
-        {/* Balanced 4-column layout */}
+        {/* Grid Layout */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" suppressHydrationWarning={true}>
           {differentiators.map((item, index) => {
             const Icon = item.icon
             return (
               <div 
                 key={index} 
-                className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col items-center text-center" 
+                className="bg-white p-7 rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500 group flex flex-col items-center text-center" 
                 suppressHydrationWarning={true}
               >
-                {/* Balanced Icon Box */}
-                <div className="w-14 h-14 mb-6 bg-[#1a4d4d]/5 rounded-2xl flex items-center justify-center group-hover:bg-[#8dae39]/20 transition-colors">
-                  <Icon className="w-7 h-7 text-[#1a4d4d]" />
+                {/* Icon Box */}
+                <div className="w-14 h-14 mb-5 bg-[#1a4d4d]/5 rounded-2xl flex items-center justify-center group-hover:bg-[#8dae39]/20 transition-all duration-500">
+                  <Icon className="w-7 h-7 text-[#1a4d4d] group-hover:scale-110 transition-transform duration-300" />
                 </div>
                 
-                {/* Balanced Text */}
-                <h3 className="text-xl font-bold text-[#1a4d4d] mb-3 leading-tight">
+                {/* Text Content */}
+                <h3 className="text-lg font-bold text-[#1a4d4d] mb-2 leading-tight group-hover:text-[#8b5aa6] transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-gray-500 text-sm md:text-base leading-relaxed">
+                <p className="text-gray-500 text-[13px] md:text-sm leading-relaxed px-2">
                   {item.description}
                 </p>
               </div>
