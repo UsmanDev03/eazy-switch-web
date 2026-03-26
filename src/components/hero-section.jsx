@@ -11,9 +11,6 @@ export function HeroSection() {
       className="relative overflow-hidden bg-[#1a4d4d]"
       suppressHydrationWarning={true}
     >
-      {/* FIX: Mobile par height 'auto' kar di (h-auto) taake extra space na banay.
-        Desktop par (lg:min-h-screen) rakha hai taake turbine sahi fit ho.
-      */}
       <div className="relative bg-[#1a4d4d] overflow-hidden h-auto lg:min-h-screen flex flex-col">
         <div className="absolute inset-0 pointer-events-none">
           <div
@@ -31,10 +28,6 @@ export function HeroSection() {
         <AnimatedWaves />
         <Navbar />
 
-        {/* Padding Adjustment: 
-          Mobile par pt-24 aur pb-20 (bilkul clean aur compact).
-          Desktop par pt-44 aur pb-32.
-        */}
         <div
           className="relative z-30 px-4 md:px-8 lg:px-12 pt-32 md:pt-40 lg:pt-48 pb-20 md:pb-28 lg:pb-32 flex justify-center xl:justify-start flex-grow items-center min-h-[600px] lg:min-h-[800px]"
           suppressHydrationWarning={true}
