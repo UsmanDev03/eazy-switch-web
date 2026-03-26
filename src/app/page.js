@@ -7,6 +7,7 @@ import { SuccessStories } from "@/components/SuccessStories";
 import { Testimonials } from "@/components/Testimonials";
 import { CTA } from "@/components/CTA";
 import { Footer } from "@/components/Footer";
+import { ProcessSection } from "@/components/ProcessSection";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <AboutSection/>
       <Differentiators/>
       <ServiceSection/>
+      <ProcessSection/>
       <SuccessStories/>
       <Testimonials/>
       {/* <CTA/> */}

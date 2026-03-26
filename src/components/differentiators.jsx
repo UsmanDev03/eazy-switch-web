@@ -34,11 +34,14 @@ export function Differentiators() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="mb-12 text-center" suppressHydrationWarning={true}>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1a4d4d] tracking-tight">
-            The <span className="text-[#8b5aa6]">Eazy Switch</span> Edge
+          {/* Badge Style Heading */}
+          <span className="text-[#8b5aa6] font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs">Why Choose Us</span>
+          
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1a4d4d] tracking-tight mt-3">
+            The <span className="text-[#8b5aa6]">Eazy Switch</span> Advantage
           </h2>
-          <p className="mt-3 text-gray-600 font-medium text-sm md:text-base">
-            Where energy management meets simplicity.
+          <p className="mt-4 text-gray-500 font-medium text-sm md:text-base max-w-xl mx-auto">
+            Hassle-free energy management designed specifically for the modern UK business landscape.
           </p>
         </div>
 
