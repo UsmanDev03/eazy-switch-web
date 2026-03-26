@@ -19,7 +19,7 @@ const footerLinks = {
   ],
   resources: [
     { label: "Energy Guides", href: "#" },
-    { label: "FAQ", href: "#" },
+    { label: "FAQ", href: "/faq" },
     { label: "Support", href: "#" },
   ],
 }
