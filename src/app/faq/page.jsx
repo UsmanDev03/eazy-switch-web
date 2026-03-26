@@ -11,6 +11,7 @@ import {
   Zap,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 const FAQPage = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -103,7 +104,6 @@ const FAQPage = () => {
       </section>
 
       {/* FAQ Accordion Section */}
-      {/* FAQ Interactive Section */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6">
           <div className="flex flex-col lg:flex-row gap-12 items-stretch">
@@ -227,7 +227,7 @@ const FAQPage = () => {
       </section>
 
       {/* Trust & CTA Section */}
-      <section className="pb-24 container mx-auto px-6">
+      <section className="pb-12 container mx-auto px-6">
         <div className="bg-[#1a4d4d] rounded-[3rem] p-10 md:p-16 text-center relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 p-10 opacity-10">
             <HelpCircle className="w-40 h-40 text-white" />
@@ -242,13 +242,17 @@ const FAQPage = () => {
           </p>
 
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center relative z-10">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-10 py-5 bg-[#8dae39] text-[#1a4d4d] font-black text-xl rounded-2xl flex items-center gap-3 shadow-lg hover:bg-white transition-all"
-            >
-              Contact Support <MessageCircle className="w-6 h-6" />
-            </motion.button>
+            {/* Link ko simple rakhen, legacyBehavior aur passHref hata dein */}
+            <Link href="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-10 py-5 bg-[#8dae39] text-[#1a4d4d] font-black text-xl rounded-2xl flex items-center gap-3 shadow-lg hover:bg-white transition-all cursor-pointer"
+              >
+                Contact Support <MessageCircle className="w-6 h-6" />
+              </motion.button>
+            </Link>
+
             <div className="flex items-center gap-3 text-white">
               <ShieldCheck className="w-8 h-8 text-[#8dae39]" />
               <span className="font-bold tracking-tight">
