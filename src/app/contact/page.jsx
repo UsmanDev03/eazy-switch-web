@@ -55,7 +55,6 @@ const ContactPage = () => {
       <section className="py-16 container mx-auto px-6 max-w-7xl">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
           {/* --- LEFT SIDE: CONTACT INFO + TRUST POINTS --- */}
-          {/* --- LEFT SIDE: CONTACT INFO + TRUST POINTS --- */}
           <motion.div {...fadeInUp} className="lg:w-1/3 space-y-12">
             <div>
               <h3 className="text-3xl font-black text-[#1a4d4d] mb-8 tracking-tight">
