@@ -104,7 +104,7 @@ const FAQPage = () => {
       </section>
 
       {/* FAQ Accordion Section */}
-      <section className="py-24 bg-white">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="flex flex-col lg:flex-row gap-12 items-stretch">
             {/* Left Side: Question List */}
@@ -227,7 +227,7 @@ const FAQPage = () => {
       </section>
 
       {/* Trust & CTA Section */}
-      <section className="pb-12 container mx-auto px-6">
+      <section className="pb-16 container mx-auto px-6">
         <div className="bg-[#1a4d4d] rounded-[3rem] p-10 md:p-16 text-center relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 p-10 opacity-10">
             <HelpCircle className="w-40 h-40 text-white" />
