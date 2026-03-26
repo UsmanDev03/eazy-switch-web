@@ -11,30 +11,35 @@ export function HeroSection() {
       className="relative overflow-hidden bg-[#1a4d4d]"
       suppressHydrationWarning={true}
     >
-      {/* min-h-screen ko auto rakha hai mobile par taake faltu space na bane */}
-      <div className="relative bg-[#1a4d4d] overflow-hidden min-h-screen lg:min-h-0">
+      {/* FIX: Mobile par height 'auto' kar di (h-auto) taake extra space na banay.
+        Desktop par (lg:min-h-screen) rakha hai taake turbine sahi fit ho.
+      */}
+      <div className="relative bg-[#1a4d4d] overflow-hidden h-auto lg:min-h-screen flex flex-col">
         <div className="absolute inset-0 pointer-events-none">
           <div
             className="absolute 
-            hidden lg:block 
-            lg:left-auto lg:right-[8%] lg:translate-x-0 
-            lg:top-[12%] lg:bottom-auto 
+            hidden xl:block 
+            xl:left-auto xl:right-[8%] xl:translate-x-0 
+            xl:top-[12%] xl:bottom-auto 
             z-10 opacity-80 transition-all duration-700"
             suppressHydrationWarning={true}
           >
-            <AnimatedWindTurbine size="lg:w-[450px] lg:h-[700px]" />
+            <AnimatedWindTurbine size="xl:w-[450px] xl:h-[700px]" />
           </div>
         </div>
 
         <AnimatedWaves />
         <Navbar />
 
-        {/* Padding Bottom (pb) optimized for all devices */}
+        {/* Padding Adjustment: 
+          Mobile par pt-24 aur pb-20 (bilkul clean aur compact).
+          Desktop par pt-44 aur pb-32.
+        */}
         <div
-          className="relative z-30 px-4 md:px-6 lg:px-12 pt-32 md:pt-44 pb-12 md:pb-24 lg:pb-32 flex justify-center lg:justify-start"
+          className="relative z-30 px-4 md:px-8 lg:px-12 pt-32 md:pt-40 lg:pt-48 pb-20 md:pb-28 lg:pb-32 flex justify-center xl:justify-start flex-grow items-center min-h-[600px] lg:min-h-[800px]"
           suppressHydrationWarning={true}
         >
-          <div className="w-full max-w-4xl bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-[2.5rem] px-6 md:px-10 py-8 md:py-12 shadow-2xl text-center lg:text-left transition-all">
+          <div className="w-full max-w-2xl lg:max-w-3xl xl:max-w-4xl bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-[2.5rem] px-6 md:px-12 py-10 md:py-14 shadow-2xl text-center xl:text-left transition-all">
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-5 drop-shadow-md tracking-tight">
               A Smarter, Transparent Way to Secure Your{" "}
               <span className="text-[#8dae39]">Business Utilities</span>
