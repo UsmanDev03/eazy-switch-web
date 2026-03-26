@@ -103,56 +103,126 @@ const FAQPage = () => {
       </section>
 
       {/* FAQ Accordion Section */}
-      <section className="py-20 container mx-auto px-6 max-w-4xl">
-        <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className={`border-2 rounded-3xl transition-all duration-300 ${
-                activeIndex === index
-                  ? "border-[#8b5aa6] bg-white shadow-xl shadow-[#8b5aa6]/5"
-                  : "border-gray-100 bg-gray-50/50 hover:border-gray-200"
-              }`}
-            >
-              <button
-                onClick={() =>
-                  setActiveIndex(activeIndex === index ? null : index)
-                }
-                className="w-full flex items-center justify-between p-6 md:p-8 text-left outline-none"
-              >
-                <span
-                  className={`text-lg md:text-xl font-black pr-8 ${activeIndex === index ? "text-[#8b5aa6]" : "text-[#1a4d4d]"}`}
-                >
-                  {faq.q}
-                </span>
-                <div
-                  className={`shrink-0 p-2 rounded-full transition-all ${activeIndex === index ? "bg-[#8b5aa6] text-white rotate-180" : "bg-gray-200 text-gray-500"}`}
-                >
-                  {activeIndex === index ? (
-                    <Minus className="w-5 h-5" />
-                  ) : (
-                    <Plus className="w-5 h-5" />
-                  )}
+      {/* FAQ Interactive Section */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col lg:flex-row gap-12 items-stretch">
+            {/* Left Side: Question List */}
+            <div className="w-full lg:w-5/12 space-y-3">
+              <div className="mb-8">
+                <div className="inline-flex items-center gap-2 bg-[#8dae39]/10 px-4 py-2 rounded-full mb-4 text-[#1a4d4d] font-bold text-sm uppercase tracking-widest">
+                  <HelpCircle className="w-4 h-4 text-[#8dae39]" /> Knowledge
+                  Base
                 </div>
-              </button>
+                <h2 className="text-3xl md:text-4xl font-black text-[#1a4d4d]">
+                  Browse <span className="text-[#8b5aa6]">Questions.</span>
+                </h2>
+              </div>
 
-              <AnimatePresence>
-                {activeIndex === index && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="overflow-hidden"
+              {faqs.map((faq, index) => (
+                <div key={index} className="flex flex-col">
+                  <button
+                    onClick={() =>
+                      setActiveIndex(activeIndex === index ? null : index)
+                    }
+                    className={`w-full text-left p-5 rounded-2xl transition-all duration-300 border-2 flex items-center justify-between group ${
+                      activeIndex === index
+                        ? "border-[#8dae39] bg-[#8dae39]/5 shadow-sm"
+                        : "border-gray-100 bg-gray-50/50 hover:border-gray-200"
+                    }`}
                   >
-                    <div className="p-6 md:p-8 pt-0 text-gray-600 text-base md:text-lg leading-relaxed border-t border-gray-50">
-                      {faq.a}
+                    <span
+                      className={`font-bold transition-colors ${
+                        activeIndex === index
+                          ? "text-[#1a4d4d]"
+                          : "text-gray-500"
+                      }`}
+                    >
+                      {faq.q}
+                    </span>
+                    {/* Desktop Arrow */}
+                    <ArrowRight
+                      className={`hidden lg:block w-5 h-5 transition-transform duration-300 ${
+                        activeIndex === index
+                          ? "translate-x-0 opacity-100 text-[#8dae39]"
+                          : "-translate-x-2 opacity-0 text-gray-300"
+                      }`}
+                    />
+                    {/* Mobile Plus/Minus Icon */}
+                    <div className="lg:hidden">
+                      {activeIndex === index ? (
+                        <Minus className="w-5 h-5 text-[#8dae39]" />
+                      ) : (
+                        <Plus className="w-5 h-5 text-gray-400" />
+                      )}
                     </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                  </button>
+
+                  {/* Mobile Answer (Only visible on small screens) */}
+                  <AnimatePresence>
+                    {activeIndex === index && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="lg:hidden overflow-hidden"
+                      >
+                        <div className="p-6 bg-[#1a4d4d] text-white rounded-2xl mt-2 mb-4 shadow-lg">
+                          <p className="text-gray-200 leading-relaxed">
+                            {faq.a}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
             </div>
-          ))}
+
+            {/* Right Side: Answer Box (Hidden on Mobile) */}
+            <div className="hidden lg:block w-full lg:w-7/12 relative">
+              <div className="lg:sticky lg:top-32 lg:h-fit">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeIndex || "default"}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.3 }}
+                    className="bg-[#1a4d4d] rounded-[3rem] p-8 md:p-12 shadow-2xl relative overflow-hidden flex flex-col justify-center min-h-[450px]"
+                  >
+                    <Zap className="absolute -bottom-10 -right-10 w-64 h-64 text-white/5 rotate-12" />
+
+                    {activeIndex !== null ? (
+                      <div className="relative z-10">
+                        <div className="w-12 h-1 text-[#8dae39] bg-[#8dae39] mb-8 rounded-full"></div>
+                        <h3 className="text-2xl md:text-3xl font-black text-white mb-6 leading-tight">
+                          {faqs[activeIndex].q}
+                        </h3>
+                        <p className="text-gray-300 text-lg md:text-xl leading-relaxed font-light">
+                          {faqs[activeIndex].a}
+                        </p>
+                        <div className="mt-10 flex items-center gap-4 text-[#8dae39] font-bold">
+                          <ShieldCheck className="w-6 h-6" />
+                          <span>Verified Response</span>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="text-center relative z-10">
+                        <HelpCircle className="w-16 h-16 text-[#8dae39] mx-auto mb-6 opacity-50" />
+                        <h3 className="text-2xl font-bold text-white mb-4">
+                          Select a question
+                        </h3>
+                        <p className="text-gray-400">
+                          Click on any question to see details.
+                        </p>
+                      </div>
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
