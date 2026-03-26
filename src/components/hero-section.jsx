@@ -11,6 +11,7 @@ export function HeroSection() {
       className="relative overflow-hidden bg-[#1a4d4d]"
       suppressHydrationWarning={true}
     >
+      {/* min-h-screen ko auto rakha hai mobile par taake faltu space na bane */}
       <div className="relative bg-[#1a4d4d] overflow-hidden min-h-screen lg:min-h-0">
         <div className="absolute inset-0 pointer-events-none">
           <div
@@ -27,11 +28,12 @@ export function HeroSection() {
 
         <AnimatedWaves />
         <Navbar />
+
+        {/* Padding Bottom (pb) optimized for all devices */}
         <div
-          className="relative z-30 px-4 md:px-6 lg:px-12 pt-32 md:pt-44 pb-20 md:pb-56 flex justify-center lg:justify-start"
+          className="relative z-30 px-4 md:px-6 lg:px-12 pt-32 md:pt-44 pb-12 md:pb-24 lg:pb-32 flex justify-center lg:justify-start"
           suppressHydrationWarning={true}
         >
-          {/* Only changed max-w-2xl to max-w-4xl for more width */}
           <div className="w-full max-w-4xl bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-[2.5rem] px-6 md:px-10 py-8 md:py-12 shadow-2xl text-center lg:text-left transition-all">
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-5 drop-shadow-md tracking-tight">
               A Smarter, Transparent Way to Secure Your{" "}
