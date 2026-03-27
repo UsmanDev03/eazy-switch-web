@@ -17,7 +17,7 @@ const navItems = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "Who We Are", href: "/about" },
-  { label: "Our Standards", href: "/standards" },
+  { label: "Our Expertise", href: "/expertise" },
   { label: "Complaints Procedure", href: "/complaints" },
   { label: "Contact Us", href: "/contact" },
 ];
