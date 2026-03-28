@@ -37,25 +37,25 @@ const ContactPage = () => {
           <Navbar />
 
           <div className="container mx-auto px-6 pt-28 pb-16 md:pt-36 md:pb-20 text-center relative z-10">
-            {/* Static H1 - No Animation */}
+            {/* Updated Heading */}
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4 drop-shadow-md tracking-tight">
-              Let's Start Your <br />
-              <span className="text-[#8dae39]">Savings Journey.</span>
+              Get a Professional <br />
+              <span className="text-[#8dae39]">Utility Review.</span>
             </h1>
 
-            {/* Static Paragraph - No Animation */}
+            {/* Updated Paragraph */}
             <p className="text-gray-200 text-base md:text-lg lg:text-xl max-w-3xl mx-auto font-light leading-relaxed">
-              Have a question or ready to switch? Our expert consultants are
-              just a message away.{" "}
+              If your business wants to understand its energy or water costs more clearly, 
+              our experts can provide{" "}
               <span className="text-white font-medium italic underline decoration-[#8dae39]">
-                Most businesses save up to 30% after their first review.
+                independent review and guidance.
               </span>
             </p>
           </div>
         </div>
       </section>
 
-      {/* Main Form Section */}
+      {/* Main Form Section - EXACT SAME LAYOUT */}
       <section className="py-16 container mx-auto px-6 max-w-7xl">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
           {/* --- LEFT SIDE: TRUST POINTS --- */}
@@ -109,9 +109,9 @@ const ContactPage = () => {
                 Why Choose Us?
               </h4>
               {[
-                "No hidden brokerage fees",
-                "Full market comparison",
-                "Dedicated account manager",
+                "Independent professional review",
+                "Full market transparency",
+                "Dedicated consultant support",
               ].map((text, index) => (
                 <div key={index} className="flex items-center gap-4 group">
                   <div className="bg-[#8dae39] rounded-xl p-2 shadow-lg shadow-[#8dae39]/20 group-hover:rotate-12 transition-transform">
@@ -176,12 +176,13 @@ const ContactPage = () => {
                 </div>
                 <div className="space-y-2 relative">
                   <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d]">
-                    Service
+                    Service Interested In
                   </label>
                   <select className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 bg-white text-[#1a4d4d] font-bold appearance-none cursor-pointer outline-none focus:border-[#8b5aa6]">
                     <option>Business Electricity</option>
                     <option>Business Gas</option>
                     <option>Water Services</option>
+                    <option>General Consultancy</option>
                   </select>
                   <ChevronRight className="w-5 h-5 absolute right-4 top-[70%] -translate-y-1/2 rotate-90 text-[#1a4d4d] pointer-events-none" />
                 </div>
@@ -190,18 +191,18 @@ const ContactPage = () => {
               <div className="space-y-2">
                 <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d] flex items-center gap-2">
                   <MessageSquare className="w-5 h-5 text-[#8b5aa6]" /> How can
-                  we help?
+                  our experts help?
                 </label>
                 <textarea
                   rows="4"
-                  placeholder="Contract expiry dates or specific requirements..."
+                  placeholder="Tell us about your current utility situation or any specific guidance you need..."
                   className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 bg-white text-[#1a4d4d] font-semibold focus:border-[#8b5aa6] outline-none transition-all resize-none shadow-sm"
                 ></textarea>
               </div>
 
               <div className="space-y-2">
                 <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d]">
-                  Attach Recent Bill (Optional)
+                  Attach Recent Bill (Optional for Review)
                 </label>
                 <div
                   onDragOver={(e) => {
@@ -230,14 +231,14 @@ const ContactPage = () => {
                 whileTap={{ scale: 0.97 }}
                 className="w-full py-6 bg-[#1a4d4d] text-white font-black text-xl rounded-2xl flex items-center justify-center gap-4 shadow-xl transition-all"
               >
-                Send Request <Send className="w-6 h-6" />
+                Request Professional Review <Send className="w-6 h-6" />
               </motion.button>
             </form>
           </motion.div>
         </div>
       </section>
 
-      {/* --- NEW SECTION: OFFICE & LOCATION --- */}
+      {/* --- OFFICE & LOCATION SECTION - EXACT SAME --- */}
       <section className="py-12 bg-gray-50/50 border-t border-gray-100">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
@@ -264,7 +265,6 @@ const ContactPage = () => {
               className="lg:col-span-7 bg-white p-4 rounded-[2.5rem] shadow-xl border border-gray-100 min-h-[400px] relative overflow-hidden group"
             >
               <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
-                {/* Embed Map Here - Using a placeholder design */}
                 <div className="text-center p-8">
                   <div className="bg-[#1a4d4d] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-2xl">
                     <MapPin className="text-white w-8 h-8" />

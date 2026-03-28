@@ -9,7 +9,7 @@ const footerLinks = {
     { label: "Energy Contracts", href: "#" },
     { label: "Energy Efficiency", href: "#" },
     { label: "On-site Generation", href: "#" },
-    { label: "Compliance", href: "#" },
+    { label: "Compliance", href: "/compliance" },
   ],
   company: [
     { label: "About Us", href: "#about" },
