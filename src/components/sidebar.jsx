@@ -23,7 +23,7 @@ const navItems = [
   },
   { label: "Who We Are", href: "/about" },
   { label: "Our Expertise", href: "/expertise" },
-  { label: "Complaints Procedure", href: "/complaints" },
+  { label: "Complaints Procedure", href: "/complaints-procedure" },
   { label: "Contact Us", href: "/contact" },
 ];
 

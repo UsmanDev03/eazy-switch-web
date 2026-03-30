@@ -8,6 +8,7 @@ import { Testimonials } from "@/components/Testimonials";
 import { CTA } from "@/components/CTA";
 import { Footer } from "@/components/Footer";
 import { ProcessSection } from "@/components/ProcessSection";
+import { TrustpilotTestimonials } from "@/components/TrustpilotTestimonials";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <ServiceSection/>
       <ProcessSection/>
       <SuccessStories/>
+      <TrustpilotTestimonials/>
       <Testimonials/>
       {/* <CTA/> */}
       {/* <Footer/> */}

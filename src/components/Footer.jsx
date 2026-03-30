@@ -8,8 +8,8 @@ const footerLinks = {
   services: [
     { label: "Energy Contracts", href: "#" },
     { label: "Energy Efficiency", href: "#" },
-    { label: "On-site Generation", href: "#" },
-    { label: "Compliance", href: "/compliance" },
+    { label: "Modern Slavery Statement", href: "/modern-slavery-statement" },
+    { label: "Trust & Compliance", href: "/trust-and-compliance" },
   ],
   company: [
     { label: "About Us", href: "#about" },
@@ -112,11 +112,11 @@ export function Footer() {
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-white/50">
           <p>© 2026 Easy-Switch. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link href="#" className="hover:text-[#8dae39] transition-colors">
+            <Link href="/privacy-policy" className="hover:text-[#8dae39] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#" className="hover:text-[#8dae39] transition-colors">
-              Terms of Service
+            <Link href="/terms" className="hover:text-[#8dae39] transition-colors">
+              Terms and Conditions
             </Link>
             {/* <Link href="#" className="hover:text-[#8dae39] transition-colors">
               Cookies

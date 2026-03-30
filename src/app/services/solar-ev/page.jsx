@@ -21,8 +21,6 @@ import Link from "next/link";
 const SolarEVPage = () => {
   return (
     <div className="min-h-screen bg-white text-[#1a4d4d] font-sans selection:bg-[#8dae39] selection:text-white">
-      <Navbar />
-
       {/* 1. HERO SECTION */}
       <section
         className="relative overflow-hidden bg-[#1a4d4d]"
