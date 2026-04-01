@@ -35,11 +35,12 @@ export function Navbar() {
           className="flex items-center justify-between"
           suppressHydrationWarning={true}
         >
-          <Link
+         <Link
             href="/"
+       
             className="relative flex items-center justify-center 
-            w-[180px] md:w-[200px] h-[55px] md:h-[60px] 
-            bg-white p-3 rounded-full md:rounded-x2 
+            w-[220px] md:w-[240px] h-[65px] md:h-[65px] 
+            bg-white p-2 rounded-full md:rounded-x2
             transition-all duration-300 hover:scale-105 active:scale-95
             shadow-[0_4px_14px_0_rgba(255,255,255,0.4)] hover:shadow-[0_6px_20px_0_rgba(255,255,255,0.6)]
             border border-white/20"
@@ -49,9 +50,8 @@ export function Navbar() {
               alt="Eazy Switch Logo"
               fill
               priority
-              // Yahan image par `filter` hata diya hai, ab simple `contain` use kiya hai.
-              className="object-contain p-2"
-              sizes="(max-width: 768px) 180px, 240px"
+              className="object-contain p-1"
+              sizes="(max-width: 768px) 220px, 260px"
             />
           </Link>
 
