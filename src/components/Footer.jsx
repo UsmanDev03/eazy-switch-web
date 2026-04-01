@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import React from "react"
-import Link from "next/link"
-import { Zap, Mail, Phone, MapPin, ArrowRight } from "lucide-react"
-import Image from "next/image"
+import React from "react";
+import Link from "next/link";
+import { Zap, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 const footerLinks = {
   // Direct services from your folder structure
@@ -26,56 +26,67 @@ const footerLinks = {
     { label: "Terms & Conditions", href: "/terms" },
     { label: "Contact Us", href: "/contact" },
   ],
-}
+};
 
 export function Footer() {
   return (
-    <footer className="bg-[#1a4d4d] text-white border-t border-white/5" suppressHydrationWarning={true}>
+    <footer
+      className="bg-[#1a4d4d] text-white border-t border-white/5"
+      suppressHydrationWarning={true}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
-          
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link
-  href="/"
-  className="relative flex items-center justify-center 
-    w-[160px] md:w-[200px] h-[50px] md:h-[60px] 
-    bg-white p-2 rounded-xl mb-6
-    transition-all duration-300 hover:scale-105 active:scale-95
-    shadow-[0_4px_20px_rgba(255,255,255,0.15)] 
-    border border-white/10"
->
-  <Image
-    src="/logo/logo.png"
-    alt="Eazy Switch Logo"
-    fill
-    priority
-    className="object-contain p-1.5"
-    sizes="(max-width: 768px) 160px, 200px"
-  />
-</Link>
+              href="/"
+              className="relative flex items-center justify-center 
+              w-[160px] md:w-[200px] h-[50px] md:h-[60px] 
+              bg-white p-2 rounded-xl mb-6
+              transition-all duration-300 hover:scale-105 active:scale-95
+              shadow-[0_4px_20px_rgba(255,255,255,0.15)] 
+              border border-white/10"
+              >
+              <Image
+                src="/logo/logo.png"
+                alt="Eazy Switch Logo"
+                fill
+                priority
+                className="object-contain p-1.5"
+                sizes="(max-width: 768px) 160px, 200px"
+              />
+            </Link>
             <p className="text-white/60 mb-8 max-w-sm leading-relaxed text-sm">
-              Empowering UK businesses with transparent energy solutions. We simplify procurement, reduce costs, and drive sustainability.
+              Empowering UK businesses with transparent energy solutions. We
+              simplify procurement, reduce costs, and drive sustainability.
             </p>
             <div className="space-y-4 text-sm text-white/80">
               <div className="flex items-center gap-3 group cursor-pointer">
                 <Mail className="w-4 h-4 text-[#8dae39] group-hover:scale-110 transition-transform" />
-                <span className="group-hover:text-white transition-colors">hello@eazyswitch.co.uk</span>
+                <span className="group-hover:text-white transition-colors">
+                  hello@eazyswitch.co.uk
+                </span>
               </div>
               <div className="flex items-center gap-3 group cursor-pointer">
                 <Phone className="w-4 h-4 text-[#8dae39] group-hover:scale-110 transition-transform" />
-                <span className="group-hover:text-white transition-colors">0800 123 4567</span>
+                <span className="group-hover:text-white transition-colors">
+                  0800 123 4567
+                </span>
               </div>
               <div className="flex items-center gap-3 group cursor-pointer">
                 <MapPin className="w-4 h-4 text-[#8dae39] group-hover:scale-110 transition-transform" />
-                <span className="group-hover:text-white transition-colors">London, United Kingdom</span>
+                <span className="group-hover:text-white transition-colors">
+                  London, United Kingdom
+                </span>
               </div>
             </div>
           </div>
 
           {/* Attractive Services Column */}
           <div>
-            <h4 className="font-bold mb-6 text-white text-sm border-l-4 border-[#8dae39] pl-3">Our Services</h4>
+            <h4 className="font-bold mb-6 text-white text-sm border-l-4 border-[#8dae39] pl-3">
+              Our Services
+            </h4>
             <ul className="space-y-4">
               {footerLinks.services.map((link) => (
                 <li key={link.label}>
@@ -93,7 +104,9 @@ export function Footer() {
 
           {/* Company Column */}
           <div>
-            <h4 className="font-bold mb-6 text-white text-sm border-l-4 border-[#8dae39] pl-3">Quick Links</h4>
+            <h4 className="font-bold mb-6 text-white text-sm border-l-4 border-[#8dae39] pl-3">
+              Quick Links
+            </h4>
             <ul className="space-y-4">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
@@ -110,7 +123,9 @@ export function Footer() {
 
           {/* Legal/Resources Column */}
           <div>
-            <h4 className="font-bold mb-6 text-white text-sm border-l-4 border-[#8dae39] pl-3">Support</h4>
+            <h4 className="font-bold mb-6 text-white text-sm border-l-4 border-[#8dae39] pl-3">
+              Support
+            </h4>
             <ul className="space-y-4">
               {footerLinks.resources.map((link) => (
                 <li key={link.label}>
@@ -128,26 +143,29 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-white/40 uppercase tracking-widest">
-  {/* Copyright & Powered By in one line */}
-  <p>
-    © 2026 Eazy-Switch Limited. All rights reserved. | Powered by{" "}
-    <a 
-      href="https://teqnoor.com" 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      className="text-white hover:text-[#8dae39] transition-colors font-bold tracking-normal"
-    >
-      TEQNOOR
-    </a>
-  </p>
+          {/* Copyright & Powered By in one line */}
+          <p>
+            © 2026 Eazy-Switch Limited. All rights reserved. | Powered by{" "}
+            <a
+              href="https://teqnoor.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-[#8dae39] transition-colors font-bold tracking-normal"
+            >
+              TEQNOOR
+            </a>
+          </p>
 
-  <div className="flex gap-6">
-    <Link href="/modern-slavery-statement" className="hover:text-[#8dae39] transition-colors">
-      Modern Slavery Statement
-    </Link>
-  </div>
-</div>
+          <div className="flex gap-6">
+            <Link
+              href="/modern-slavery-statement"
+              className="hover:text-[#8dae39] transition-colors"
+            >
+              Modern Slavery Statement
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
-  )
+  );
 }
