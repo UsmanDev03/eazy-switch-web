@@ -37,15 +37,21 @@ export function Navbar() {
         >
           <Link
             href="/"
-            className="relative block w-[150px] md:w-[180px] h-[40px] md:h-[50px] transition-transform hover:scale-105 active:scale-95"
+            className="relative flex items-center justify-center 
+            w-[180px] md:w-[200px] h-[55px] md:h-[60px] 
+            bg-white p-3 rounded-full md:rounded-x2 
+            transition-all duration-300 hover:scale-105 active:scale-95
+            shadow-[0_4px_14px_0_rgba(255,255,255,0.4)] hover:shadow-[0_6px_20px_0_rgba(255,255,255,0.6)]
+            border border-white/20"
           >
             <Image
               src="/logo/logo.png"
               alt="Eazy Switch Logo"
               fill
               priority
-              className="object-contain"
-              sizes="(max-width: 768px) 150px, 180px"
+              // Yahan image par `filter` hata diya hai, ab simple `contain` use kiya hai.
+              className="object-contain p-2"
+              sizes="(max-width: 768px) 180px, 240px"
             />
           </Link>
 

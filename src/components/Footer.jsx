@@ -3,6 +3,7 @@
 import React from "react"
 import Link from "next/link"
 import { Zap, Mail, Phone, MapPin, ArrowRight } from "lucide-react"
+import Image from "next/image"
 
 const footerLinks = {
   // Direct services from your folder structure
@@ -35,12 +36,24 @@ export function Footer() {
           
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 mb-6">
-              <div className="w-9 h-9 bg-[#8b5aa6] rounded-xl flex items-center justify-center shadow-lg">
-                <Zap className="w-5 h-5 text-white" />
-              </div>
-              <span className="font-bold text-2xl tracking-tight text-white italic">Eazy-Switch</span>
-            </Link>
+            <Link
+  href="/"
+  className="relative flex items-center justify-center 
+    w-[160px] md:w-[200px] h-[50px] md:h-[60px] 
+    bg-white p-2 rounded-xl mb-6
+    transition-all duration-300 hover:scale-105 active:scale-95
+    shadow-[0_4px_20px_rgba(255,255,255,0.15)] 
+    border border-white/10"
+>
+  <Image
+    src="/logo/logo.png"
+    alt="Eazy Switch Logo"
+    fill
+    priority
+    className="object-contain p-1.5"
+    sizes="(max-width: 768px) 160px, 200px"
+  />
+</Link>
             <p className="text-white/60 mb-8 max-w-sm leading-relaxed text-sm">
               Empowering UK businesses with transparent energy solutions. We simplify procurement, reduce costs, and drive sustainability.
             </p>
