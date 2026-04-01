@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { AnimatedWindTurbine } from "./animated-wind-turbine";
 import { Navbar } from "./navbar";
 import { AnimatedWaves } from "./animated-waves";
+import Image from "next/image";
 
 export function HeroSection() {
   return (
@@ -12,27 +13,51 @@ export function HeroSection() {
       suppressHydrationWarning={true}
     >
       <div className="relative bg-[#1a4d4d] overflow-hidden h-auto lg:min-h-screen flex flex-col">
-        <div className="absolute inset-0 pointer-events-none">
+        {/* --- 1. Background Image Layer --- */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1548337138-e87d889cc369?auto=format&fit=crop&q=80&w=1600"
+            alt="Smarter Business Utilities Background"
+            fill
+            priority
+            className="object-cover opacity-30" // Lower opacity to keep it professional
+            sizes="100vw"
+          />
+          {/* Dark Teal Gradient Overlay to blend with your theme */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1a4d4d] via-[#1a4d4d]/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1a4d4d]" />
+        </div>
+
+        {/* --- 2. Wind Turbine Animation Layer --- */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
           <div
             className="absolute 
-            hidden xl:block 
-            xl:left-auto xl:right-[8%] xl:translate-x-0 
-            xl:top-[12%] xl:bottom-auto 
-            z-10 opacity-80 transition-all duration-700"
+            hidden 
+            xl:block 
+            xl:right-[5%] 
+            xl:top-[10%]
+            2xl:right-[5%] 
+            2xl:top-[12%] 
+            opacity-60 
+            transition-all duration-700"
             suppressHydrationWarning={true}
           >
-            <AnimatedWindTurbine size="xl:w-[450px] xl:h-[700px]" />
+            <div className="xl:w-[400px] xl:h-[600px] 2xl:w-[600px] 2xl:h-[800px]">
+              <AnimatedWindTurbine size="xl:w-[600px] xl:h-[800px]" />
+            </div>
           </div>
         </div>
 
         <AnimatedWaves />
         <Navbar />
 
+        {/* --- 3. Content Layer --- */}
         <div
           className="relative z-30 px-4 md:px-8 lg:px-12 pt-32 md:pt-40 lg:pt-48 pb-20 md:pb-28 lg:pb-32 flex justify-center xl:justify-start flex-grow items-center min-h-[600px] lg:min-h-[800px]"
           suppressHydrationWarning={true}
         >
-          <div className="w-full max-w-2xl lg:max-w-3xl xl:max-w-4xl bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-[2.5rem] px-6 md:px-12 py-10 md:py-14 shadow-2xl text-center xl:text-left transition-all">
+          {/* Glassmorphism Card */}
+          <div className="w-full max-w-2xl lg:max-w-3xl xl:max-w-4xl bg-white/[0.05] backdrop-blur-xl border border-white/10 rounded-[2.5rem] px-6 md:px-12 py-10 md:py-14 shadow-2xl text-center xl:text-left transition-all">
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-5 drop-shadow-md tracking-tight">
               A Smarter, Transparent Way to Secure Your{" "}
               <span className="text-[#8dae39]">Business Utilities</span>
@@ -52,7 +77,7 @@ export function HeroSection() {
 
               <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 mt-1">
                 <a
-                  href="/get-started"
+                  href="/contact"
                   className="inline-flex items-center justify-center px-7 py-3.5 bg-[#8b5aa6] hover:bg-[#724a8d] text-white font-bold rounded-full transition-all duration-300 text-sm md:text-base shadow-xl active:scale-95 text-center group"
                 >
                   Begin Your Energy Journey Today

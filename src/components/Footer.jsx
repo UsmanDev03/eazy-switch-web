@@ -2,70 +2,75 @@
 
 import React from "react"
 import Link from "next/link"
-import { Zap, Mail, Phone, MapPin } from "lucide-react"
+import { Zap, Mail, Phone, MapPin, ArrowRight } from "lucide-react"
 
 const footerLinks = {
+  // Direct services from your folder structure
   services: [
-    { label: "Energy Contracts", href: "#" },
-    { label: "Energy Efficiency", href: "#" },
-    { label: "Modern Slavery Statement", href: "/modern-slavery-statement" },
-    { label: "Trust & Compliance", href: "/trust-and-compliance" },
+    { label: "Business Electricity", href: "/services/electricity" },
+    { label: "Business Gas", href: "/services/gas" },
+    { label: "Water Services", href: "/services/water" },
+    { label: "New Connections", href: "/services/connections" },
+    { label: "Solar & EV Charging", href: "/services/solar-ev" },
   ],
   company: [
-    { label: "About Us", href: "#about" },
-    { label: "Case Studies", href: "#case-studies" },
-    { label: "Testimonials", href: "#testimonials" },
-    { label: "Contact", href: "#" },
+    { label: "About Us", href: "/about" },
+    { label: "Expertise", href: "/expertise" },
+    { label: "Trust & Compliance", href: "/trust-and-compliance" },
+    { label: "Complaints Procedure", href: "/complaints-procedure" },
   ],
   resources: [
-    { label: "Energy Guides", href: "#" },
     { label: "FAQ", href: "/faq" },
-    { label: "Support", href: "#" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Terms & Conditions", href: "/terms" },
+    { label: "Contact Us", href: "/contact" },
   ],
 }
 
 export function Footer() {
   return (
-    <footer className="bg-[#1a4d4d] text-white" suppressHydrationWarning={true}>
+    <footer className="bg-[#1a4d4d] text-white border-t border-white/5" suppressHydrationWarning={true}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+          
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-[#8b5aa6] rounded-lg flex items-center justify-center">
+            <Link href="/" className="flex items-center gap-2 mb-6">
+              <div className="w-9 h-9 bg-[#8b5aa6] rounded-xl flex items-center justify-center shadow-lg">
                 <Zap className="w-5 h-5 text-white" />
               </div>
-              <span className="font-semibold text-xl tracking-tight text-white">Easy-Switch</span>
+              <span className="font-bold text-2xl tracking-tight text-white italic">Eazy-Switch</span>
             </Link>
-            <p className="text-white/70 mb-6 max-w-sm leading-relaxed">
-              Your trusted partner for business energy. We help you save costs, meet sustainability goals, and stay compliant.
+            <p className="text-white/60 mb-8 max-w-sm leading-relaxed text-sm">
+              Empowering UK businesses with transparent energy solutions. We simplify procurement, reduce costs, and drive sustainability.
             </p>
-            <div className="space-y-3 text-sm text-white/80">
-              <div className="flex items-center gap-3">
-                <span className="shrink-0 text-[#8b5aa6]"><Mail className="w-4 h-4" /></span>
-                <span>hello@ecoenergy.com</span>
+            <div className="space-y-4 text-sm text-white/80">
+              <div className="flex items-center gap-3 group cursor-pointer">
+                <Mail className="w-4 h-4 text-[#8dae39] group-hover:scale-110 transition-transform" />
+                <span className="group-hover:text-white transition-colors">hello@eazyswitch.co.uk</span>
               </div>
-              <div className="flex items-center gap-3">
-                <span className="shrink-0 text-[#8b5aa6]"><Phone className="w-4 h-4" /></span>
-                <span>0800 123 4567</span>
+              <div className="flex items-center gap-3 group cursor-pointer">
+                <Phone className="w-4 h-4 text-[#8dae39] group-hover:scale-110 transition-transform" />
+                <span className="group-hover:text-white transition-colors">0800 123 4567</span>
               </div>
-              <div className="flex items-center gap-3">
-                <span className="shrink-0 text-[#8b5aa6]"><MapPin className="w-4 h-4" /></span>
-                <span>123 Business Park, London, UK</span>
+              <div className="flex items-center gap-3 group cursor-pointer">
+                <MapPin className="w-4 h-4 text-[#8dae39] group-hover:scale-110 transition-transform" />
+                <span className="group-hover:text-white transition-colors">London, United Kingdom</span>
               </div>
             </div>
           </div>
 
-          {/* Services */}
+          {/* Attractive Services Column */}
           <div>
-            <h4 className="font-bold mb-6 text-white uppercase tracking-wider text-xs">Services</h4>
-            <ul className="space-y-3">
+            <h4 className="font-bold mb-6 text-white text-sm border-l-4 border-[#8dae39] pl-3">Our Services</h4>
+            <ul className="space-y-4">
               {footerLinks.services.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/70 hover:text-[#8dae39] transition-colors"
+                    className="text-sm text-white/60 hover:text-[#8dae39] flex items-center gap-2 transition-all group"
                   >
+                    <ArrowRight className="w-3 h-3 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
                     {link.label}
                   </Link>
                 </li>
@@ -73,15 +78,15 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Company Column */}
           <div>
-            <h4 className="font-bold mb-6 text-white uppercase tracking-wider text-xs">Company</h4>
-            <ul className="space-y-3">
+            <h4 className="font-bold mb-6 text-white text-sm border-l-4 border-[#8dae39] pl-3">Quick Links</h4>
+            <ul className="space-y-4">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/70 hover:text-[#8dae39] transition-colors"
+                    className="text-sm text-white/60 hover:text-[#8dae39] transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -90,15 +95,15 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Resources */}
+          {/* Legal/Resources Column */}
           <div>
-            <h4 className="font-bold mb-6 text-white uppercase tracking-wider text-xs">Resources</h4>
-            <ul className="space-y-3">
+            <h4 className="font-bold mb-6 text-white text-sm border-l-4 border-[#8dae39] pl-3">Support</h4>
+            <ul className="space-y-4">
               {footerLinks.resources.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/70 hover:text-[#8dae39] transition-colors"
+                    className="text-sm text-white/60 hover:text-[#8dae39] transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -109,20 +114,26 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-white/50">
-          <p>© 2026 Easy-Switch. All rights reserved.</p>
-          <div className="flex gap-6">
-            <Link href="/privacy-policy" className="hover:text-[#8dae39] transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="hover:text-[#8dae39] transition-colors">
-              Terms and Conditions
-            </Link>
-            {/* <Link href="#" className="hover:text-[#8dae39] transition-colors">
-              Cookies
-            </Link> */}
-          </div>
-        </div>
+        <div className="mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-white/40 uppercase tracking-widest">
+  {/* Copyright & Powered By in one line */}
+  <p>
+    © 2026 Eazy-Switch Limited. All rights reserved. | Powered by{" "}
+    <a 
+      href="https://teqnoor.com" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="text-white hover:text-[#8dae39] transition-colors font-bold tracking-normal"
+    >
+      TEQNOOR
+    </a>
+  </p>
+
+  <div className="flex gap-6">
+    <Link href="/modern-slavery-statement" className="hover:text-[#8dae39] transition-colors">
+      Modern Slavery Statement
+    </Link>
+  </div>
+</div>
       </div>
     </footer>
   )

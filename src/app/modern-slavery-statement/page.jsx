@@ -14,49 +14,74 @@ import {
   Scale,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const ModernSlaveryStatement = () => {
   return (
     <div className="min-h-screen bg-[#fcfdfa] text-[#1a4d4d] font-sans selection:bg-[#8dae39] selection:text-white">
       {/* --- HERO SECTION --- */}
-      <section
-        className="relative overflow-hidden bg-[#1a4d4d]"
-        suppressHydrationWarning={true}
-      >
-        <div className="relative bg-[#1a4d4d] min-h-[55vh] flex items-center justify-center text-center">
-          <Navbar />
-          <div className="container mx-auto px-6 pt-28 pb-16 md:pt-36 md:pb-20 relative z-10">
-            <motion.h1
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4 tracking-tight"
-            >
-              Modern Slavery <br />
-              <motion.span
-                initial={{ color: "#ffffff" }}
-                animate={{ color: "#8dae39" }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-              >
-                Statement.
-              </motion.span>
-            </motion.h1>
+ <section
+  className="relative overflow-hidden bg-[#1a4d4d]"
+  suppressHydrationWarning={true}
+>
+  <div className="relative bg-[#1a4d4d] min-h-[55vh] flex items-center justify-center text-center">
+    
+    {/* 1. Background Image Layer - Ethical & Professional Theme */}
+    <div className="absolute inset-0 z-0 bg-[#1a4d4d]">
+      <Image
+        // Professional teamwork/ethics related image
+        src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=1500"
+        alt="Modern Slavery Statement Background"
+        fill
+        priority
+        className="object-cover opacity-20" 
+        sizes="100vw"
+      />
+      {/* Consistent Dark Teal Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1a4d4d]/90 via-[#1a4d4d]/40 to-[#1a4d4d]" />
+    </div>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-gray-200 text-base md:text-lg lg:text-xl max-w-3xl mx-auto font-light leading-relaxed"
-            >
-              Effective Date:{" "}
-              <span className="text-white font-medium">01 April 2026</span>.{" "}
-              <br />
-              We ensure ethical practices and full transparency against modern
-              slavery.
-            </motion.p>
-          </div>
-        </div>
-      </section>
+    {/* 2. Navbar */}
+    <Navbar />
+
+    {/* 3. Content Container */}
+    <div className="container mx-auto px-6 pt-28 pb-16 md:pt-36 md:pb-20 relative z-10">
+      <motion.h1
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4 tracking-tight drop-shadow-md"
+      >
+        Modern Slavery <br />
+        <motion.span
+          initial={{ color: "#ffffff" }}
+          animate={{ color: "#8dae39" }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+        >
+          Statement.
+        </motion.span>
+      </motion.h1>
+
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.8 }}
+        className="text-gray-200 text-base md:text-lg lg:text-xl max-w-3xl mx-auto font-light leading-relaxed"
+      >
+        Effective Date:{" "}
+        <span className="text-white font-medium underline decoration-[#8dae39]">
+          01 April 2026
+        </span>.{" "}
+        <br />
+        We ensure{" "}
+        <span className="text-white font-medium italic">
+          ethical practices and full transparency
+        </span>{" "}
+        against modern slavery in all our operations.
+      </motion.p>
+    </div>
+  </div>
+</section>
 
       {/* --- MAIN CONTENT --- */}
       <section className="py-12 md:py-20">

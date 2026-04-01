@@ -12,10 +12,11 @@ import {
   Scale,
   ShieldCheck,
   Building2,
-  HeartHandshake
+  HeartHandshake,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const ExpertisePage = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -29,6 +30,8 @@ const ExpertisePage = () => {
       title: "Electricity",
       description:
         "We act as your independent energy consultant, providing an expert review of your bills and non-commodity charges to ensure complete transparency.",
+      image:
+        "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=800",
       icon: Zap,
       color: "#8dae39",
       detailedFeatures: [
@@ -48,8 +51,11 @@ const ExpertisePage = () => {
     },
     {
       title: "Gas",
+      // GAS IMAGE CHANGED BELOW
       description:
         "The gas market is complex. We provide professional guidance on all applicable charges and proactive contract management for your business.",
+      image:
+        "https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&q=80&w=800",
       icon: Flame,
       color: "#8b5aa6",
       detailedFeatures: [
@@ -71,6 +77,8 @@ const ExpertisePage = () => {
       title: "Water",
       description:
         "Since deregulation, we help businesses review tariffs, usage patterns, and industry-specific fees to optimize their water expenditure.",
+      image:
+        "https://images.unsplash.com/photo-1542013936693-884638332954?auto=format&fit=crop&q=80&w=800",
       icon: Droplets,
       color: "#3b82f6",
       detailedFeatures: [
@@ -92,6 +100,8 @@ const ExpertisePage = () => {
       title: "Connections",
       description:
         "Moving or expanding? We provide end-to-end advice and support for new utility connections and infrastructure upgrades.",
+      image:
+        "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800",
       icon: Activity,
       color: "#1a4d4d",
       detailedFeatures: [
@@ -109,16 +119,55 @@ const ExpertisePage = () => {
         },
       ],
     },
+    {
+      title: "Solar & EV Solutions",
+      // SOLAR IMAGE CHANGED BELOW
+      description:
+        "Empowering UK businesses with on-site renewable generation. We provide strategic energy infrastructure and long-term cost stability.",
+      image:
+        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=800",
+      icon: Zap,
+      color: "#eab308",
+      detailedFeatures: [
+        {
+          head: "Commercial Solar PV",
+          desc: "Bespoke on-site generation with 25-year panel warranties.",
+        },
+        {
+          head: "EV Infrastructure",
+          desc: "Scalable charging solutions for staff, customers, and visitors.",
+        },
+        {
+          head: "Investment Support",
+          desc: "Guidance on Capital Allowances, grants, and flexible finance.",
+        },
+      ],
+    },
   ];
 
   return (
     <div className="min-h-screen bg-[#fcfdfd] text-[#1a4d4d]">
-      <Navbar />
-
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-[#1a4d4d]" suppressHydrationWarning={true}>
+      <section
+        className="relative overflow-hidden bg-[#1a4d4d]"
+        suppressHydrationWarning={true}
+      >
         <div className="relative bg-[#1a4d4d] min-h-[55vh] flex items-center justify-center">
-          <div className="container mx-auto px-6 pt-28 pb-16 md:pt-36 md:pb-20 text-center relative z-10">
+          <div className="absolute inset-0 z-0 bg-[#1a4d4d]">
+            <Image
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2026&auto=format&fit=crop"
+              alt="Business Utility Data Analysis Expertise"
+              fill
+              priority
+              className="object-cover opacity-30"
+              sizes="100vw"
+              quality={90}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#1a4d4d]/80 via-[#1a4d4d]/20 to-[#1a4d4d]" />
+          </div>
+
+          <Navbar />
+
+          <div className="container mx-auto px-6 pt-32 pb-16 md:pt-40 md:pb-20 text-center relative z-10">
             <motion.h1
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -135,7 +184,8 @@ const ExpertisePage = () => {
               transition={{ delay: 0.2, duration: 0.8 }}
               className="text-gray-200 text-base md:text-lg lg:text-xl max-w-3xl mx-auto font-light leading-relaxed"
             >
-              Comprehensive Utility Management for Businesses. At Eazy Switch, we act as your{" "}
+              Comprehensive Utility Management for Businesses. At Eazy Switch,
+              we act as your{" "}
               <span className="text-white font-medium italic underline decoration-[#8dae39]">
                 independent energy consultant
               </span>{" "}
@@ -145,24 +195,29 @@ const ExpertisePage = () => {
         </div>
       </section>
 
-      {/* Intro Stats/Trust Section */}
       <section className="py-12 bg-white border-b border-gray-100">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="space-y-2">
-                <Building2 className="w-8 h-8 text-[#8dae39] mx-auto mb-3" />
-                <h3 className="font-black text-lg">All Business Sizes</h3>
-                <p className="text-gray-500 text-sm">From single sites to complex multi-site operations.</p>
+              <Building2 className="w-8 h-8 text-[#8dae39] mx-auto mb-3" />
+              <h3 className="font-black text-lg">All Business Sizes</h3>
+              <p className="text-gray-500 text-sm">
+                From single sites to complex multi-site operations.
+              </p>
             </div>
             <div className="space-y-2 border-y md:border-y-0 md:border-x border-gray-100 py-6 md:py-0">
-                <ShieldCheck className="w-8 h-8 text-[#8b5aa6] mx-auto mb-3" />
-                <h3 className="font-black text-lg">Independent Advice</h3>
-                <p className="text-gray-500 text-sm">Actionable guidance on contracts and billing issues.</p>
+              <ShieldCheck className="w-8 h-8 text-[#8b5aa6] mx-auto mb-3" />
+              <h3 className="font-black text-lg">Independent Advice</h3>
+              <p className="text-gray-500 text-sm">
+                Actionable guidance on contracts and billing issues.
+              </p>
             </div>
             <div className="space-y-2">
-                <HeartHandshake className="w-8 h-8 text-[#1a4d4d] mx-auto mb-3" />
-                <h3 className="font-black text-lg">Ongoing Support</h3>
-                <p className="text-gray-500 text-sm">Consistent liaison with suppliers on your behalf.</p>
+              <HeartHandshake className="w-8 h-8 text-[#1a4d4d] mx-auto mb-3" />
+              <h3 className="font-black text-lg">Ongoing Support</h3>
+              <p className="text-gray-500 text-sm">
+                Consistent liaison with suppliers on your behalf.
+              </p>
             </div>
           </div>
         </div>
@@ -202,7 +257,9 @@ const ExpertisePage = () => {
           >
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4">
-                <h2 className={sectionHeaderStyle}>{services[activeTab].title} Guidance</h2>
+                <h2 className={sectionHeaderStyle}>
+                  {services[activeTab].title} Guidance
+                </h2>
                 <div className="h-1.5 w-16 bg-[#8dae39] rounded-full" />
                 <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-medium">
                   {services[activeTab].description}
@@ -239,21 +296,44 @@ const ExpertisePage = () => {
 
             <div className="lg:col-span-5 hidden lg:flex justify-center">
               <div
-                className="w-full max-w-[380px] aspect-square rounded-[4rem] flex items-center justify-center relative overflow-hidden"
-                style={{ backgroundColor: `${services[activeTab].color}08` }}
+                className="w-full max-w-[420px] aspect-square rounded-[4rem] flex items-center justify-center relative overflow-hidden shadow-2xl"
+                style={{ backgroundColor: `${services[activeTab].color}15` }}
               >
-                <div className="absolute inset-0 opacity-20" 
-                     style={{ backgroundImage: `radial-gradient(circle at 2px 2px, ${services[activeTab].color} 1px, transparent 0)`, backgroundSize: '24px 24px' }} 
+                {/* Background Dotted Pattern */}
+                <div
+                  className="absolute inset-0 opacity-20"
+                  style={{
+                    backgroundImage: `radial-gradient(circle at 2px 2px, ${services[activeTab].color} 1px, transparent 0)`,
+                    backgroundSize: "24px 24px",
+                  }}
                 />
+
                 <motion.div
-                  initial={{ scale: 0.8 }}
-                  animate={{ scale: 1 }}
-                  className="bg-white p-16 rounded-[3rem] shadow-2xl z-10 border border-gray-50 relative"
+                  key={activeTab}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4 }}
+                  className="relative w-[85%] h-[85%] z-10"
                 >
-                  {React.createElement(services[activeTab].icon, {
-                    className: "w-28 h-28",
-                    style: { color: services[activeTab].color },
-                  })}
+                  {/* IMAGE DISPLAY INSTEAD OF BIG ICON */}
+                  <div className="relative w-full h-full rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl bg-gray-200">
+                    <Image
+                      src={services[activeTab].image}
+                      alt={services[activeTab].title}
+                      fill
+                      className="object-cover"
+                      priority
+                      sizes="(max-width: 768px) 100vw, 400px"
+                    />
+                  </div>
+
+                  {/* Small floating icon overlay */}
+                  <div className="absolute -bottom-2 -right-2 p-5 rounded-2xl bg-white shadow-xl z-20 border border-gray-100">
+                    {React.createElement(services[activeTab].icon, {
+                      className: "w-8 h-8",
+                      style: { color: services[activeTab].color },
+                    })}
+                  </div>
                 </motion.div>
               </div>
             </div>
@@ -271,32 +351,41 @@ const ExpertisePage = () => {
                 <span className="text-[#8dae39]">Your Utility Advocate.</span>
               </h2>
               <p className="text-gray-300 text-lg font-light leading-relaxed">
-                "Our commitment doesn’t end at the contract. We review your usage patterns, resolve disputes, and manage the entire LOA process so you can focus on your business."
+                "Our commitment doesn’t end at the contract. We review your
+                usage patterns, resolve disputes, and manage the entire LOA
+                process so you can focus on your business."
               </p>
               <div className="flex flex-wrap gap-4 pt-4">
                 <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-5 py-3 rounded-xl">
                   <Scale className="w-5 h-5 text-[#8dae39]" />
-                  <span className="font-bold text-sm uppercase tracking-widest">Ethical Fees</span>
+                  <span className="font-bold text-sm uppercase tracking-widest">
+                    Ethical Fees
+                  </span>
                 </div>
                 <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-5 py-3 rounded-xl">
                   <TrendingDown className="w-5 h-5 text-[#8dae39]" />
-                  <span className="font-bold text-sm uppercase tracking-widest">Market Intel</span>
+                  <span className="font-bold text-sm uppercase tracking-widest">
+                    Market Intel
+                  </span>
                 </div>
               </div>
             </div>
-            
+
             <div className="lg:w-1/2 w-full grid grid-cols-1 md:grid-cols-2 gap-4">
-               {[
-                  "Billing Dispute Resolution",
-                  "LOA Management",
-                  "Contract Audits",
-                  "Site Work Coordination",
-                ].map((item, i) => (
-                  <div key={i} className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/5 flex items-start gap-4">
-                    <CheckCircle2 className="w-5 h-5 text-[#8dae39] shrink-0" />
-                    <span className="font-bold text-sm">{item}</span>
-                  </div>
-                ))}
+              {[
+                "Billing Dispute Resolution",
+                "LOA Management",
+                "Contract Audits",
+                "Site Work Coordination",
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/5 flex items-start gap-4"
+                >
+                  <CheckCircle2 className="w-5 h-5 text-[#8dae39] shrink-0" />
+                  <span className="font-bold text-sm">{item}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -315,7 +404,8 @@ const ExpertisePage = () => {
               <span className="text-[#1a4d4d] font-black underline underline-offset-4 decoration-[#8dae39] decoration-4">
                 0.1p per kWh
               </span>{" "}
-              for non-profits and registered charities. We're here to help you do more.
+              for non-profits and registered charities. We're here to help you
+              do more.
             </p>
             <Link href="/contact" className="inline-block pt-2">
               <button className="px-10 py-4 bg-[#1a4d4d] text-white font-black rounded-xl text-sm hover:bg-[#8dae39] hover:text-[#1a4d4d] transition-all shadow-xl">
@@ -323,15 +413,17 @@ const ExpertisePage = () => {
               </button>
             </Link>
           </div>
-          
+
           <div className="w-48 h-48 md:w-56 md:h-56 shrink-0 bg-white flex flex-col items-center justify-center rounded-full shadow-2xl border-[8px] border-[#8dae39] z-10 relative">
-            <p className="text-[#8dae39] font-black text-5xl md:text-6xl">0.1p</p>
+            <p className="text-[#8dae39] font-black text-5xl md:text-6xl">
+              0.1p
+            </p>
             <p className="text-[#1a4d4d] font-black text-[11px] uppercase mt-2 tracking-widest">
               Flat Fee
             </p>
             {/* Sparkle effect */}
             <div className="absolute -top-2 -right-2 bg-[#8dae39] p-2 rounded-full text-white">
-                <Zap className="w-4 h-4 fill-current" />
+              <Zap className="w-4 h-4 fill-current" />
             </div>
           </div>
         </div>

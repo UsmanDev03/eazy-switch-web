@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const FAQPage = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -66,10 +67,26 @@ const FAQPage = () => {
         className="relative overflow-hidden bg-[#1a4d4d]"
         suppressHydrationWarning={true}
       >
+        {" "}
+        {/* <--- Yahan pehle ')' tha, ab '>' hai. Error fix! */}
         <div className="relative bg-[#1a4d4d] min-h-[55vh] flex items-center justify-center">
+          {/* 1. Background Image Layer */}
+          <div className="absolute inset-0 z-0 bg-[#1a4d4d]">
+            <Image
+              src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1500"
+              alt="Common Questions and Answers Background"
+              fill
+              priority
+              className="object-cover opacity-20"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#1a4d4d]/90 via-[#1a4d4d]/40 to-[#1a4d4d]" />
+          </div>
+
+          {/* 2. Navbar */}
           <Navbar />
 
-          {/* Exact Same Structure & Animations as your About Section */}
+          {/* 3. Content Container */}
           <div className="container mx-auto px-6 pt-28 pb-16 md:pt-36 md:pb-20 text-center relative z-10">
             <motion.h1
               initial={{ opacity: 0, y: -10 }}

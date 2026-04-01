@@ -17,6 +17,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const PrivacyPolicy = () => {
   return (
@@ -27,8 +28,24 @@ const PrivacyPolicy = () => {
         suppressHydrationWarning={true}
       >
         <div className="relative bg-[#1a4d4d] min-h-[55vh] flex items-center justify-center">
+          {/* 1. Background Image Layer - Privacy & Protection Theme */}
+          <div className="absolute inset-0 z-0 bg-[#1a4d4d]">
+            <Image
+              src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=1500"
+              alt="Eazy Switch Privacy Policy"
+              fill
+              priority
+              className="object-cover opacity-20"
+              sizes="100vw"
+            />
+            {/* Consistent Dark Teal Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#1a4d4d]/90 via-[#1a4d4d]/40 to-[#1a4d4d]" />
+          </div>
+
+          {/* 2. Navbar */}
           <Navbar />
 
+          {/* 3. Content Container */}
           <div className="container mx-auto px-6 pt-28 pb-16 md:pt-36 md:pb-20 text-center relative z-10">
             <motion.h1
               initial={{ opacity: 0, y: -10 }}
@@ -53,8 +70,10 @@ const PrivacyPolicy = () => {
               className="text-gray-200 text-base md:text-lg lg:text-xl max-w-3xl mx-auto font-light leading-relaxed"
             >
               Effective Date:{" "}
-              <span className="text-white font-medium">01 April 2026</span>. We
-              are committed to protecting your privacy and handling your
+              <span className="text-white font-medium underline decoration-[#8dae39]">
+                01 April 2026
+              </span>
+              . We are committed to protecting your privacy and handling your
               personal data with{" "}
               <span className="text-white font-medium italic underline decoration-[#8dae39]">
                 full transparency and lawful care.

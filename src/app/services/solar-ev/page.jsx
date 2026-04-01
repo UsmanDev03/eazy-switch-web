@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-
+import Image from "next/image";
 const SolarEVPage = () => {
   return (
     <div className="min-h-screen bg-white text-[#1a4d4d] font-sans selection:bg-[#8dae39] selection:text-white">
@@ -27,8 +27,24 @@ const SolarEVPage = () => {
         suppressHydrationWarning={true}
       >
         <div className="relative bg-[#1a4d4d] min-h-[55vh] flex items-center justify-center">
+          {/* Live HD Background Image for Solar & EV */}
+          <div className="absolute inset-0 z-0 bg-[#1a4d4d]">
+            <Image
+              src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=2069&auto=format&fit=crop"
+              alt="Commercial Solar and EV Infrastructure"
+              fill
+              priority
+              className="object-cover opacity-30" // Increased slightly for better visual interest
+              sizes="100vw"
+              quality={90}
+            />
+            {/* Refined Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#1a4d4d]/80 via-[#1a4d4d]/20 to-[#1a4d4d]" />
+          </div>
+
           <Navbar />
 
+          {/* Content Container */}
           <div className="container mx-auto px-6 pt-28 pb-16 md:pt-36 md:pb-20 text-center relative z-10">
             <motion.h1
               initial={{ opacity: 0, y: -10 }}

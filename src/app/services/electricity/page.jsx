@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const ElectricityPage = () => {
   const charges = [
@@ -33,6 +34,20 @@ const ElectricityPage = () => {
         suppressHydrationWarning={true}
       >
         <div className="relative bg-[#1a4d4d] min-h-[55vh] flex items-center justify-center">
+          {/* Live HD Image from Unsplash/Source */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2070&auto=format&fit=crop"
+              alt="Business Electricity"
+              fill
+              priority
+              className="object-cover opacity-20"
+              sizes="100vw"
+              quality={85}
+            />
+            {/* Overlay for Contrast */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#1a4d4d]/90 via-transparent to-[#1a4d4d]/95" />
+          </div>
           <Navbar />
 
           {/* Content Container */}

@@ -17,47 +17,67 @@ import {
   UserCheck,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const ComplaintsProcedure = () => {
   return (
     <div className="min-h-screen bg-[#fcfdfa] text-[#1a4d4d] font-sans selection:bg-[#8dae39] selection:text-white">
       {/* --- HERO SECTION --- */}
-      <section
-        className="relative overflow-hidden bg-[#1a4d4d]"
-        suppressHydrationWarning={true}
-      >
-        <div className="relative bg-[#1a4d4d] min-h-[50vh] flex items-center justify-center text-center">
-          <Navbar />
-          <div className="container mx-auto px-6 pt-28 pb-16 md:pt-36 md:pb-20 relative z-10">
-            <motion.h1
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4 tracking-tight"
-            >
-              Complaints <br />
-              <motion.span
-                initial={{ color: "#ffffff" }}
-                animate={{ color: "#8dae39" }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-              >
-                Procedure.
-              </motion.span>
-            </motion.h1>
+     <section
+  className="relative overflow-hidden bg-[#1a4d4d]"
+  suppressHydrationWarning={true}
+>
+  <div className="relative bg-[#1a4d4d] min-h-[55vh] flex items-center justify-center">
+    <div className="absolute inset-0 z-0 bg-[#1a4d4d]">
+      <Image
+        src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=1200"
+        alt="Customer Support and Resolution"
+        fill
+        priority
+        className="object-cover opacity-25"
+        sizes="100vw"
+        quality={90}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1a4d4d]/80 via-[#1a4d4d]/20 to-[#1a4d4d]" />
+    </div>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-gray-200 text-base md:text-lg lg:text-xl max-w-3xl mx-auto font-light leading-relaxed"
-            >
-              We are committed to high service standards. <br />
-              If you're not satisfied, we'll resolve your concerns quickly and
-              transparently.
-            </motion.p>
-          </div>
-        </div>
-      </section>
+    {/* 2. Navbar */}
+    <Navbar />
+
+    {/* 3. Content Container */}
+    <div className="container mx-auto px-6 pt-32 pb-16 md:pt-40 md:pb-20 text-center relative z-10">
+      <motion.h1
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4 drop-shadow-md tracking-tight"
+      >
+        Complaints <br />
+        <motion.span
+          initial={{ color: "#ffffff" }}
+          animate={{ color: "#8dae39" }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+        >
+          Procedure.
+        </motion.span>
+      </motion.h1>
+
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.8 }}
+        className="text-gray-200 text-base md:text-lg lg:text-xl max-w-3xl mx-auto font-light leading-relaxed"
+      >
+        We are committed to high service standards. <br />
+        If you're not satisfied, we'll resolve your concerns{" "}
+        <span className="text-white font-medium italic underline decoration-[#8dae39]">
+          quickly and transparently
+        </span>{" "}
+        as your trusted partner.
+      </motion.p>
+    </div>
+  </div>
+</section>
 
       {/* --- MAIN CONTENT --- */}
       <section className="py-12 md:py-20">

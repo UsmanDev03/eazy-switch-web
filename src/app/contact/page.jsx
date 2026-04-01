@@ -15,6 +15,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const ContactPage = () => {
   const [dragActive, setDragActive] = useState(false);
@@ -34,19 +35,36 @@ const ContactPage = () => {
         suppressHydrationWarning={true}
       >
         <div className="relative bg-[#1a4d4d] min-h-[55vh] flex items-center justify-center">
+          {/* 1. Background Image Layer - Updated Stable Link for Review/Data */}
+          <div className="absolute inset-0 z-0 bg-[#1a4d4d]">
+            <Image
+              // Professional Data Analysis / Guidance Image
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200"
+              alt="Professional Utility Data Review"
+              fill
+              priority
+              className="object-cover opacity-25" // Opacity controlled for readability
+              sizes="100vw"
+            />
+            {/* Dark Green Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#1a4d4d]/80 via-[#1a4d4d]/20 to-[#1a4d4d]" />
+          </div>
+
+          {/* 2. Navbar - Remains absolute */}
           <Navbar />
 
+          {/* 3. Content Container */}
           <div className="container mx-auto px-6 pt-28 pb-16 md:pt-36 md:pb-20 text-center relative z-10">
-            {/* Updated Heading */}
+            {/* Heading */}
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4 drop-shadow-md tracking-tight">
               Get a Professional <br />
               <span className="text-[#8dae39]">Utility Review.</span>
             </h1>
 
-            {/* Updated Paragraph */}
+            {/* Paragraph */}
             <p className="text-gray-200 text-base md:text-lg lg:text-xl max-w-3xl mx-auto font-light leading-relaxed">
-              If your business wants to understand its energy or water costs more clearly, 
-              our experts can provide{" "}
+              If your business wants to understand its energy or water costs
+              more clearly, our experts can provide{" "}
               <span className="text-white font-medium italic underline decoration-[#8dae39]">
                 independent review and guidance.
               </span>

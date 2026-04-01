@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const AboutPage = () => {
   // NORMAL/SUBTLE Animation Variants
@@ -39,9 +40,26 @@ const AboutPage = () => {
         suppressHydrationWarning={true}
       >
         <div className="relative bg-[#1a4d4d] min-h-[55vh] flex items-center justify-center">
+          {/* 1. Background Layer - Professional Consulting Visual */}
+          <div className="absolute inset-0 z-0 bg-[#1a4d4d]">
+            <Image
+              // Nayi Professional Strategy/Consulting Image
+              src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop"
+              alt="Independent Utility Consultant Strategy"
+              fill
+              priority
+              className="object-cover opacity-30"
+              sizes="100vw"
+              quality={90}
+            />
+            {/* Refined Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#1a4d4d]/80 via-[#1a4d4d]/20 to-[#1a4d4d]" />
+          </div>
+
           <Navbar />
 
-          <div className="container mx-auto px-6 pt-28 pb-16 md:pt-36 md:pb-20 text-center relative z-10">
+          {/* 3. Content Container */}
+          <div className="container mx-auto px-6 pt-32 pb-16 md:pt-40 md:pb-20 text-center relative z-10">
             <motion.h1
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -64,8 +82,8 @@ const AboutPage = () => {
               transition={{ delay: 0.2, duration: 0.8 }}
               className="text-gray-200 text-base md:text-lg lg:text-xl max-w-3xl mx-auto font-light leading-relaxed"
             >
-              Eazy Switch provides professional guidance for UK businesses on energy management. 
-              We help you navigate complex costs with{" "}
+              Eazy Switch provides professional guidance for UK businesses on
+              energy management. We help you navigate complex costs with{" "}
               <span className="text-white font-medium italic underline decoration-[#8dae39]">
                 clarity, expertise, and full transparency.
               </span>
@@ -94,11 +112,36 @@ const AboutPage = () => {
             className="grid grid-cols-1 md:grid-cols-5 gap-4"
           >
             {[
-              { step: "01", icon: Search, title: "Share Your Bill", desc: "Send us your bill or a meter photo." },
-              { step: "02", icon: FileText, title: "Sign Our LOA", desc: "Digital authorization in seconds." },
-              { step: "03", icon: Globe, title: "Market Review", desc: "Scanning 20+ top UK suppliers." },
-              { step: "04", icon: ShieldCheck, title: "Clause Check", desc: "We read the fine print for you." },
-              { step: "05", icon: MousePointerClick, title: "On-going Support", desc: "Always here when you need us." },
+              {
+                step: "01",
+                icon: Search,
+                title: "Share Your Bill",
+                desc: "Send us your bill or a meter photo.",
+              },
+              {
+                step: "02",
+                icon: FileText,
+                title: "Sign Our LOA",
+                desc: "Digital authorization in seconds.",
+              },
+              {
+                step: "03",
+                icon: Globe,
+                title: "Market Review",
+                desc: "Scanning 20+ top UK suppliers.",
+              },
+              {
+                step: "04",
+                icon: ShieldCheck,
+                title: "Clause Check",
+                desc: "We read the fine print for you.",
+              },
+              {
+                step: "05",
+                icon: MousePointerClick,
+                title: "On-going Support",
+                desc: "Always here when you need us.",
+              },
             ].map((s, i) => (
               <motion.div
                 key={i}
@@ -110,8 +153,12 @@ const AboutPage = () => {
                   {s.step}
                 </div>
                 <s.icon className="w-8 h-8 text-[#8b5aa6] mb-4" />
-                <h3 className="font-bold text-[#1a4d4d] text-base mb-1">{s.title}</h3>
-                <p className="text-gray-500 text-xs leading-relaxed">{s.desc}</p>
+                <h3 className="font-bold text-[#1a4d4d] text-base mb-1">
+                  {s.title}
+                </h3>
+                <p className="text-gray-500 text-xs leading-relaxed">
+                  {s.desc}
+                </p>
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-[#8b5aa6] rounded-full group-hover:w-1/2 transition-all duration-300"></div>
               </motion.div>
             ))}
@@ -132,8 +179,9 @@ const AboutPage = () => {
                 <span className="text-[#8dae39]">Confidence.</span>
               </h2>
               <p className="text-gray-700 text-base md:text-lg mb-6 leading-relaxed">
-                We help businesses review bills, understand complex contracts, and 
-                liaise with suppliers. Our standard fee is transparently included, ranging from{" "}
+                We help businesses review bills, understand complex contracts,
+                and liaise with suppliers. Our standard fee is transparently
+                included, ranging from{" "}
                 <span className="font-semibold text-[#8b5aa6] bg-[#8b5aa6]/10 px-2 py-0.5 rounded">
                   0.5p to 1.5p per kWh.
                 </span>
@@ -146,9 +194,12 @@ const AboutPage = () => {
                 <div className="flex items-start gap-4 relative z-10">
                   <Heart className="w-8 h-8 text-[#8b5aa6] fill-[#8b5aa6]/10 shrink-0" />
                   <div>
-                    <h4 className="font-bold text-[#1a4d4d] text-lg">Community Commitment</h4>
+                    <h4 className="font-bold text-[#1a4d4d] text-lg">
+                      Community Commitment
+                    </h4>
                     <p className="text-gray-600 text-sm mt-1 leading-relaxed">
-                      For charities and places of worship, we apply a reduced flat fee of{" "}
+                      For charities and places of worship, we apply a reduced
+                      flat fee of{" "}
                       <strong className="text-[#8b5aa6]">0.1p per kWh</strong>.
                     </p>
                   </div>
@@ -163,10 +214,22 @@ const AboutPage = () => {
               className="lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4"
             >
               {[
-                { t: "Independent Advice", d: "Unbiased guidance tailored to you." },
-                { t: "Contract Analysis", d: "We decode the complex fine print." },
-                { t: "Supplier Liaison", d: "Direct coordination on your behalf." },
-                { t: "Market Experts", d: "Navigating UK utility costs daily." },
+                {
+                  t: "Independent Advice",
+                  d: "Unbiased guidance tailored to you.",
+                },
+                {
+                  t: "Contract Analysis",
+                  d: "We decode the complex fine print.",
+                },
+                {
+                  t: "Supplier Liaison",
+                  d: "Direct coordination on your behalf.",
+                },
+                {
+                  t: "Market Experts",
+                  d: "Navigating UK utility costs daily.",
+                },
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -175,7 +238,9 @@ const AboutPage = () => {
                 >
                   <CheckCircle2 className="text-[#8dae39] w-6 h-6 group-hover:text-[#8b5aa6] transition-colors" />
                   <div>
-                    <h5 className="font-bold text-[#1a4d4d] text-base">{item.t}</h5>
+                    <h5 className="font-bold text-[#1a4d4d] text-base">
+                      {item.t}
+                    </h5>
                     <p className="text-gray-500 text-xs mt-0.5">{item.d}</p>
                   </div>
                 </motion.div>
@@ -194,7 +259,8 @@ const AboutPage = () => {
               Serving Businesses Across the UK
             </h2>
             <p className="text-gray-300 text-base font-light">
-              From single-site retailers to industrial warehouses, we’ve got you covered.
+              From single-site retailers to industrial warehouses, we’ve got you
+              covered.
             </p>
           </motion.div>
 
@@ -205,16 +271,25 @@ const AboutPage = () => {
             className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3"
           >
             {[
-              "Retail & Food", "Corporate Offices", "Hotels & Hospitality",
-              "Property Managers", "Charities & Worship", "Industrial & Logistics",
+              "Retail & Food",
+              "Corporate Offices",
+              "Hotels & Hospitality",
+              "Property Managers",
+              "Charities & Worship",
+              "Industrial & Logistics",
             ].map((sector, i) => (
               <motion.div
                 key={i}
                 variants={fadeInUp}
-                whileHover={{ scale: 1.03, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+                whileHover={{
+                  scale: 1.03,
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                }}
                 className="p-4 rounded-xl bg-white/5 border border-white/10 text-center transition-all duration-300"
               >
-                <span className="text-xs font-medium tracking-wide text-gray-100">{sector}</span>
+                <span className="text-xs font-medium tracking-wide text-gray-100">
+                  {sector}
+                </span>
               </motion.div>
             ))}
           </motion.div>

@@ -5,6 +5,7 @@ import { Menu, Sparkles } from "lucide-react";
 import { Sidebar } from "./sidebar";
 import ConsultationModal from "./ConsultationModal";
 import Link from "next/link";
+import Image from "next/image";
 
 export function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -16,9 +17,15 @@ export function Navbar() {
       <div className="absolute top-0 left-0 right-0 z-50 bg-[#1a4d4d] text-white px-4 py-3 text-center text-xs md:text-sm flex items-center justify-center gap-2 border-b border-white/5">
         <Sparkles className="w-4 h-4 text-amber-400 animate-pulse" />
         <p>
-          <span className="font-semibold text-amber-400">Zero Upfront Cost Solar:</span>{" "}
-          <span className="hidden sm:inline">Unlock sustainable savings for your business today</span>
-          <span className="sm:hidden text-[10px]">Sustainable savings for your business</span>
+          <span className="font-semibold text-amber-400">
+            Zero Upfront Cost Solar:
+          </span>{" "}
+          <span className="hidden sm:inline">
+            Unlock sustainable savings for your business today
+          </span>
+          <span className="sm:hidden text-[10px]">
+            Sustainable savings for your business
+          </span>
         </p>
       </div>
 
@@ -30,9 +37,16 @@ export function Navbar() {
         >
           <Link
             href="/"
-            className="text-2xl md:text-3xl font-bold text-white tracking-tight"
+            className="relative block w-[150px] md:w-[180px] h-[40px] md:h-[50px] transition-transform hover:scale-105 active:scale-95"
           >
-            Eazy Switch
+            <Image
+              src="/logo/logo.png"
+              alt="Eazy Switch Logo"
+              fill
+              priority
+              className="object-contain"
+              sizes="(max-width: 768px) 150px, 180px"
+            />
           </Link>
 
           <div className="flex items-center gap-4">

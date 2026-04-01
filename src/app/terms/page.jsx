@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const TermsPage = () => {
   return (
@@ -22,6 +23,20 @@ const TermsPage = () => {
         suppressHydrationWarning={true}
       >
         <div className="relative bg-[#1a4d4d] min-h-[55vh] flex items-center justify-center">
+
+          <div className="absolute inset-0 z-0 bg-[#1a4d4d]">
+            <Image
+              src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=1500"
+              alt="Eazy Switch Terms and Conditions"
+              fill
+              priority
+              className="object-cover opacity-20"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#1a4d4d]/90 via-[#1a4d4d]/40 to-[#1a4d4d]" />
+          </div>
+
+          {/* 2. Navbar */}
           <Navbar />
 
           <div className="container mx-auto px-6 pt-28 pb-16 md:pt-36 md:pb-20 text-center relative z-10">
@@ -48,8 +63,10 @@ const TermsPage = () => {
               className="text-gray-200 text-base md:text-lg lg:text-xl max-w-3xl mx-auto font-light leading-relaxed"
             >
               Effective Date:{" "}
-              <span className="text-white font-medium">01 April 2026</span>.
-              These terms govern the use of our services with{" "}
+              <span className="text-white font-medium underline decoration-[#8dae39]">
+                01 April 2026
+              </span>
+              . These terms govern the use of our services with{" "}
               <span className="text-white font-medium italic underline decoration-[#8dae39]">
                 full transparency, expertise, and professional clarity.
               </span>

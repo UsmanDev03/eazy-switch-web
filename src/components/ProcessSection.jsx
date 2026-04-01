@@ -54,7 +54,7 @@ export function ProcessSection() {
   const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <section className="py-12 md:py-16 bg-[#133a3a] text-white overflow-hidden">
+    <section id="process" className="py-12 md:py-16 bg-[#133a3a] text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         
         {/* Header - Thora chota aur clean */}

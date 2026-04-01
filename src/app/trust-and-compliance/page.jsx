@@ -14,6 +14,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const TrustAndCompliance = () => {
   return (
@@ -24,13 +25,30 @@ const TrustAndCompliance = () => {
         suppressHydrationWarning={true}
       >
         <div className="relative bg-[#1a4d4d] min-h-[55vh] flex items-center justify-center text-center">
+          {/* 1. Background Image Layer - Stable Professional Trust Image */}
+          <div className="absolute inset-0 z-0 bg-[#1a4d4d]">
+            <Image
+              src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=1500"
+              alt="Trust and Compliance Background"
+              fill
+              priority
+              className="object-cover opacity-25"
+              sizes="100vw"
+            />
+            {/* Dark Gradient Overlay for consistent UI */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#1a4d4d]/80 via-[#1a4d4d]/20 to-[#1a4d4d]" />
+          </div>
+
+          {/* 2. Navbar */}
           <Navbar />
+
+          {/* 3. Content Layer */}
           <div className="container mx-auto px-6 pt-28 pb-16 md:pt-36 md:pb-20 relative z-10">
             <motion.h1
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4 tracking-tight"
+              className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4 tracking-tight drop-shadow-md"
             >
               Trust & <br />
               <motion.span
@@ -48,9 +66,12 @@ const TrustAndCompliance = () => {
               transition={{ delay: 0.2, duration: 0.8 }}
               className="text-gray-200 text-base md:text-lg lg:text-xl max-w-3xl mx-auto font-light leading-relaxed"
             >
-              At Eazy Switch Limited, trust is at our core. We operate with full
-              transparency, strong governance, and a commitment to ethical
-              energy consultancy.
+              At Eazy Switch Limited, trust is at our core. We operate with{" "}
+              <span className="text-white font-medium italic underline decoration-[#8dae39]">
+                full transparency
+              </span>
+              , strong governance, and a commitment to ethical energy
+              consultancy.
             </motion.p>
           </div>
         </div>
