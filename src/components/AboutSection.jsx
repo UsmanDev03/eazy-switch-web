@@ -48,7 +48,7 @@ export function AboutSection() {
           <div className="relative" suppressHydrationWarning={true}>
             <div className="aspect-square rounded-2xl overflow-hidden bg-white border-4 border-white shadow-xl relative">
               <video
-                src="/media/video/eazyswitch-2.mp4"
+                src="/media/video/eazyswitch-1.mp4"
                 autoPlay={false} 
                 loop
                 controls 
