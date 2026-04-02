@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   X, Facebook, Instagram, Linkedin, Twitter, 
-  ArrowRight, ChevronLeft, ChevronDown, Zap, Flame, Droplets, Activity 
+  ArrowRight, ChevronLeft, ChevronDown, Zap, Flame, Droplets, Activity, 
+  Sun,
+  PlugZap
 } from "lucide-react";
 import Link from "next/link";
 
@@ -18,7 +20,8 @@ const navItems = [
       { label: "Gas", href: "/services/gas", icon: Flame },
       { label: "Water", href: "/services/water", icon: Droplets },
       { label: "Connections", href: "/services/connections", icon: Activity },
-      { label: "Solar-EV", href: "/services/solar-ev", icon: Activity },
+      { label: "Solar", href: "/services/solar", icon: Sun },
+      { label: "EV Charging", href: "/services/ev-charging" , icon: PlugZap },
     ]
   },
   { label: "Who We Are", href: "/about" },

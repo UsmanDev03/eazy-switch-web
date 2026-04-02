@@ -12,7 +12,9 @@ const footerLinks = {
     { label: "Business Gas", href: "/services/gas" },
     { label: "Water Services", href: "/services/water" },
     { label: "New Connections", href: "/services/connections" },
-    { label: "Solar & EV Charging", href: "/services/solar-ev" },
+    { label: "Solar", href: "/services/solar" },
+    { label: "EV Charging", href: "/services/ev-charging" },
+    
   ],
   company: [
     { label: "About Us", href: "/about" },
