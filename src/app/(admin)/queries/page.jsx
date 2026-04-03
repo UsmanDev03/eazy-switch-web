@@ -138,7 +138,7 @@ const ContactQueries = () => {
             </div>
           ) : (
             <>
-              <table className="w-full text-left border-collapse min-w-[1000px]">
+              <table className="w-full text-left border-collapse min-w-[1100px]">
                 <thead>
                   <tr className="bg-gray-50/50 border-b border-gray-50">
                     <th className="px-8 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">
@@ -152,6 +152,10 @@ const ContactQueries = () => {
                     </th>
                     <th className="px-6 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">
                       Service
+                    </th>
+                    {/* Naya Column Image ke liye */}
+                    <th className="px-6 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">
+                      Bill / Image
                     </th>
                     <th className="px-8 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest text-right">
                       Actions
@@ -188,6 +192,30 @@ const ContactQueries = () => {
                           {q.service_interested}
                         </span>
                       </td>
+
+                      {/* Image Preview logic */}
+                      <td className="px-6 py-5">
+                        {q.bill_url ? (
+                          <div
+                            className="relative w-12 h-12 group/img cursor-pointer"
+                            onClick={() => setSelectedQuery(q)}
+                          >
+                            <img
+                              src={q.bill_url}
+                              alt="Bill"
+                              className="w-full h-full object-cover rounded-lg border border-gray-200 shadow-sm transition-transform group-hover/img:scale-110"
+                            />
+                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 rounded-lg transition-opacity flex items-center justify-center text-white">
+                              <Eye size={12} />
+                            </div>
+                          </div>
+                        ) : (
+                          <span className="text-[10px] font-bold text-gray-300 italic uppercase">
+                            No File
+                          </span>
+                        )}
+                      </td>
+
                       <td className="px-8 py-5 text-right">
                         <div className="flex items-center justify-end gap-2">
                           <button
