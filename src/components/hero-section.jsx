@@ -2,7 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { AnimatedWindTurbine } from "./animated-wind-turbine";
-import { Navbar } from "./navbar";
+import { Navbar } from "./layouts/navbar";
 import { AnimatedWaves } from "./animated-waves";
 import Image from "next/image";
 

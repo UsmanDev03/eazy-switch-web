@@ -6,7 +6,7 @@ import { ServiceSection } from "@/components/ServiceSection";
 import { SuccessStories } from "@/components/SuccessStories";
 import { Testimonials } from "@/components/Testimonials";
 import { CTA } from "@/components/CTA";
-import { Footer } from "@/components/Footer";
+import { Footer } from "@/components/layouts/Footer";
 import { ProcessSection } from "@/components/ProcessSection";
 import { TrustpilotTestimonials } from "@/components/TrustpilotTestimonials";
 

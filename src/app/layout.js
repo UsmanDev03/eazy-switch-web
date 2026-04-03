@@ -1,8 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { HeroSection } from "@/components/hero-section";
-import { Footer } from "@/components/Footer";
+import { Footer } from "@/components/layouts/Footer";
 import "./globals.css";
+import WhatsAppIcon from "@/components/layouts/WhatsAppIcon";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -66,6 +67,7 @@ export default function RootLayout({ children }) {
          {/* <HeroSection /> */}
         {children}
         {/* <Analytics /> */}
+        <WhatsAppIcon/>
         <Footer/>
       </body>
     </html>
