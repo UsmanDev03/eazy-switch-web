@@ -38,10 +38,26 @@ const ContactQueries = () => {
     try {
       setLoading(true);
       const response = await fetch(API_URL);
+
+      // Check karein ke response theek hai ya nahi
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
+      }
+
+      // Check karein ke content-type JSON hi hai
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        const text = await response.text(); // Debugging ke liye HTML dekhne ke liye
+        console.error("Non-JSON response received:", text);
+        setQueries([]);
+        return;
+      }
+
       const data = await response.json();
       setQueries(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error("Fetch Error:", error.message);
+      setQueries([]); // Error ki surat mein khali array set karein
     } finally {
       setLoading(false);
     }
@@ -69,7 +85,7 @@ const ContactQueries = () => {
       q.first_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       q.last_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       q.business_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      q.email?.toLowerCase().includes(searchQuery.toLowerCase())
+      q.email?.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   // --- PAGINATION CALCULATIONS ---
@@ -87,12 +103,19 @@ const ContactQueries = () => {
       {/* HEADER SECTION */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
         <div>
-          <h1 className="text-3xl font-black text-[#1a4d4d] tracking-tight">Consultancy Leads</h1>
-          <p className="text-[#8b5aa6] text-[10px] font-bold uppercase tracking-[0.2em] mt-1">Audit Inquiries Management</p>
+          <h1 className="text-3xl font-black text-[#1a4d4d] tracking-tight">
+            Consultancy Leads
+          </h1>
+          <p className="text-[#8b5aa6] text-[10px] font-bold uppercase tracking-[0.2em] mt-1">
+            Audit Inquiries Management
+          </p>
         </div>
 
         <div className="relative w-full lg:max-w-md">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+          <Search
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+            size={18}
+          />
           <input
             type="text"
             placeholder="Search by name, business or email..."
@@ -109,29 +132,46 @@ const ContactQueries = () => {
           {loading ? (
             <div className="flex flex-col items-center justify-center p-20 space-y-4">
               <Loader2 className="animate-spin text-[#1a4d4d]" size={40} />
-              <p className="text-gray-400 font-bold text-xs uppercase tracking-widest">Loading Inquiries...</p>
+              <p className="text-gray-400 font-bold text-xs uppercase tracking-widest">
+                Loading Inquiries...
+              </p>
             </div>
           ) : (
             <>
               <table className="w-full text-left border-collapse min-w-[1000px]">
                 <thead>
                   <tr className="bg-gray-50/50 border-b border-gray-50">
-                    <th className="px-8 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">Client Name</th>
-                    <th className="px-6 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">Business</th>
-                    <th className="px-6 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">Email</th>
-                    <th className="px-6 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">Service</th>
-                    <th className="px-8 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest text-right">Actions</th>
+                    <th className="px-8 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">
+                      Client Name
+                    </th>
+                    <th className="px-6 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">
+                      Business
+                    </th>
+                    <th className="px-6 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">
+                      Email
+                    </th>
+                    <th className="px-6 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">
+                      Service
+                    </th>
+                    <th className="px-8 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest text-right">
+                      Actions
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50">
                   {currentItems.map((q) => (
-                    <tr key={q._id} className="hover:bg-[#1a4d4d]/5 transition-colors group">
+                    <tr
+                      key={q._id}
+                      className="hover:bg-[#1a4d4d]/5 transition-colors group"
+                    >
                       <td className="px-8 py-5">
                         <div className="flex items-center gap-4">
                           <div className="w-10 h-10 bg-[#1a4d4d] text-white rounded-xl flex items-center justify-center font-bold text-xs shadow-lg shadow-[#1a4d4d]/20">
                             {q.first_name?.charAt(0) || "C"}
                           </div>
-                          <p className="text-sm font-black text-gray-900 leading-none">{q.first_name} {q.last_name}</p>
+                          <p className="text-sm font-black text-gray-900 leading-none">
+                            {q.first_name} {q.last_name}
+                          </p>
                         </div>
                       </td>
                       <td className="px-6 py-5 text-xs font-bold text-gray-600">
@@ -150,10 +190,16 @@ const ContactQueries = () => {
                       </td>
                       <td className="px-8 py-5 text-right">
                         <div className="flex items-center justify-end gap-2">
-                          <button onClick={() => setSelectedQuery(q)} className="p-2.5 text-[#1a4d4d] hover:bg-[#1a4d4d]/10 rounded-xl transition-all">
+                          <button
+                            onClick={() => setSelectedQuery(q)}
+                            className="p-2.5 text-[#1a4d4d] hover:bg-[#1a4d4d]/10 rounded-xl transition-all"
+                          >
                             <Eye size={18} />
                           </button>
-                          <button onClick={() => setDeleteId(q._id)} className="p-2.5 text-red-400 hover:bg-red-50 rounded-xl transition-all">
+                          <button
+                            onClick={() => setDeleteId(q._id)}
+                            className="p-2.5 text-red-400 hover:bg-red-50 rounded-xl transition-all"
+                          >
                             <Trash2 size={18} />
                           </button>
                         </div>
@@ -167,7 +213,9 @@ const ContactQueries = () => {
               {totalPages > 1 && (
                 <div className="px-8 py-6 bg-gray-50/50 border-t border-gray-50 flex items-center justify-between">
                   <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">
-                    Showing {indexOfFirstItem + 1} - {Math.min(indexOfLastItem, filteredQueries.length)} of {filteredQueries.length}
+                    Showing {indexOfFirstItem + 1} -{" "}
+                    {Math.min(indexOfLastItem, filteredQueries.length)} of{" "}
+                    {filteredQueries.length}
                   </p>
                   <div className="flex items-center gap-2">
                     <button
@@ -177,20 +225,25 @@ const ContactQueries = () => {
                     >
                       <ChevronLeft size={18} className="text-gray-600" />
                     </button>
-                    
-                    {[...Array(totalPages)].map((_, i) => (
-                      <button
-                        key={i + 1}
-                        onClick={() => setCurrentPage(i + 1)}
-                        className={`w-9 h-9 rounded-xl text-xs font-bold transition-all ${
-                          currentPage === i + 1
-                            ? "bg-[#1a4d4d] text-white shadow-lg shadow-[#1a4d4d]/20"
-                            : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"
-                        }`}
-                      >
-                        {i + 1}
-                      </button>
-                    )).slice(Math.max(0, currentPage - 3), Math.min(totalPages, currentPage + 2))}
+
+                    {[...Array(totalPages)]
+                      .map((_, i) => (
+                        <button
+                          key={i + 1}
+                          onClick={() => setCurrentPage(i + 1)}
+                          className={`w-9 h-9 rounded-xl text-xs font-bold transition-all ${
+                            currentPage === i + 1
+                              ? "bg-[#1a4d4d] text-white shadow-lg shadow-[#1a4d4d]/20"
+                              : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"
+                          }`}
+                        >
+                          {i + 1}
+                        </button>
+                      ))
+                      .slice(
+                        Math.max(0, currentPage - 3),
+                        Math.min(totalPages, currentPage + 2),
+                      )}
 
                     <button
                       disabled={currentPage === totalPages}
@@ -206,7 +259,9 @@ const ContactQueries = () => {
           )}
 
           {!loading && filteredQueries.length === 0 && (
-            <div className="p-20 text-center text-gray-400 font-bold text-sm">No queries found.</div>
+            <div className="p-20 text-center text-gray-400 font-bold text-sm">
+              No queries found.
+            </div>
           )}
         </div>
       </div>
@@ -251,56 +306,93 @@ const ContactQueries = () => {
                   <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100 flex items-center gap-3">
                     <User size={16} className="text-[#8b5aa6]" />
                     <div>
-                      <p className="text-[9px] font-bold text-gray-400 uppercase">Client Name</p>
-                      <p className="text-sm font-bold text-gray-900">{selectedQuery.first_name} {selectedQuery.last_name}</p>
+                      <p className="text-[9px] font-bold text-gray-400 uppercase">
+                        Client Name
+                      </p>
+                      <p className="text-sm font-bold text-gray-900">
+                        {selectedQuery.first_name} {selectedQuery.last_name}
+                      </p>
                     </div>
                   </div>
                   <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100 flex items-center gap-3">
                     <Briefcase size={16} className="text-[#8b5aa6]" />
                     <div>
-                      <p className="text-[9px] font-bold text-gray-400 uppercase">Business</p>
-                      <p className="text-sm font-bold text-gray-900">{selectedQuery.business_name}</p>
+                      <p className="text-[9px] font-bold text-gray-400 uppercase">
+                        Business
+                      </p>
+                      <p className="text-sm font-bold text-gray-900">
+                        {selectedQuery.business_name}
+                      </p>
                     </div>
                   </div>
                   <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100 flex items-center gap-3">
                     <Mail size={16} className="text-[#8b5aa6]" />
                     <div>
-                      <p className="text-[9px] font-bold text-gray-400 uppercase">Email Address</p>
-                      <p className="text-sm font-bold text-gray-900">{selectedQuery.email}</p>
+                      <p className="text-[9px] font-bold text-gray-400 uppercase">
+                        Email Address
+                      </p>
+                      <p className="text-sm font-bold text-gray-900">
+                        {selectedQuery.email}
+                      </p>
                     </div>
                   </div>
                   <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100 flex items-center gap-3">
                     <Phone size={16} className="text-[#8b5aa6]" />
                     <div>
-                      <p className="text-[9px] font-bold text-gray-400 uppercase">Phone Number</p>
-                      <p className="text-sm font-bold text-gray-900">{selectedQuery.phone_number}</p>
+                      <p className="text-[9px] font-bold text-gray-400 uppercase">
+                        Phone Number
+                      </p>
+                      <p className="text-sm font-bold text-gray-900">
+                        {selectedQuery.phone_number}
+                      </p>
                     </div>
                   </div>
                 </div>
 
                 <div className="p-8 bg-[#1a4d4d] rounded-[2.5rem] text-white shadow-xl shadow-[#1a4d4d]/10 mb-8 relative overflow-hidden">
-                  <p className="text-[10px] font-black uppercase opacity-60 mb-3 tracking-widest">Message / Situation</p>
-                  <p className="text-lg leading-relaxed font-medium italic">"{selectedQuery.message}"</p>
+                  <p className="text-[10px] font-black uppercase opacity-60 mb-3 tracking-widest">
+                    Message / Situation
+                  </p>
+                  <p className="text-lg leading-relaxed font-medium italic">
+                    "{selectedQuery.message}"
+                  </p>
                   <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
-                    <span className="text-[10px] font-bold uppercase tracking-widest">Service: {selectedQuery.service_interested}</span>
-                    {selectedQuery.bill_url && <span className="text-[10px] font-bold text-[#8dae39]">Bill Attached ✓</span>}
+                    <span className="text-[10px] font-bold uppercase tracking-widest">
+                      Service: {selectedQuery.service_interested}
+                    </span>
+                    {selectedQuery.bill_url && (
+                      <span className="text-[10px] font-bold text-[#8dae39]">
+                        Bill Attached ✓
+                      </span>
+                    )}
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col sm:flex-row gap-3">
+                  {/* WhatsApp Button */}
                   <a
                     href={`https://wa.me/${selectedQuery.phone_number?.replace(/\D/g, "")}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 bg-[#25D366] text-white py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-[#20bd5a] transition-all flex items-center justify-center gap-3 shadow-lg shadow-green-100"
+                    className="flex-1 bg-[#25D366] text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#20bd5a] transition-all flex items-center justify-center gap-2 shadow-lg shadow-green-100"
                   >
-                    <MessageCircle size={18} />
-                    Contact via WhatsApp
+                    <MessageCircle size={16} />
+                    WhatsApp
                   </a>
 
+                  {/* Email Button */}
+                  <a
+                    href={`mailto:${selectedQuery.email}?subject=Regarding Your Inquiry - Eazy Switch&body=Hello ${selectedQuery.first_name}, thank you for contacting us regarding ${selectedQuery.service_interested}...`}
+                    className="flex-1 bg-[#6366f1] text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-[#4f46e5] transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-100"
+                  >
+                    <Mail size={16} />
+                    Send Email
+                  </a>
+
+                  {/* Close Button */}
                   <button
                     onClick={() => setSelectedQuery(null)}
-                    className="flex-none px-10 py-5 bg-gray-100 text-gray-600 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-gray-200 transition-all"
+                    className="flex-none px-8 py-4 bg-gray-100 text-gray-600 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-gray-200 transition-all"
                   >
                     Close
                   </button>
@@ -324,11 +416,25 @@ const ContactQueries = () => {
               <div className="w-16 h-16 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <AlertTriangle size={32} />
               </div>
-              <h3 className="text-xl font-black text-[#1a4d4d]">Delete Inquery?</h3>
-              <p className="text-gray-500 text-sm mb-8 mt-2">Is data ko delete karne ke baad recover nahi kiya ja sakay ga.</p>
+              <h3 className="text-xl font-black text-[#1a4d4d]">
+                Delete Inquery?
+              </h3>
+              <p className="text-gray-500 text-sm mb-8 mt-2">
+                Is data ko delete karne ke baad recover nahi kiya ja sakay ga.
+              </p>
               <div className="flex gap-3">
-                <button onClick={() => setDeleteId(null)} className="flex-1 py-4 bg-gray-100 text-gray-600 rounded-xl font-bold">Cancel</button>
-                <button onClick={() => handleDelete(deleteId)} className="flex-1 py-4 bg-red-500 text-white rounded-xl font-bold shadow-lg shadow-red-100">Delete</button>
+                <button
+                  onClick={() => setDeleteId(null)}
+                  className="flex-1 py-4 bg-gray-100 text-gray-600 rounded-xl font-bold"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => handleDelete(deleteId)}
+                  className="flex-1 py-4 bg-red-500 text-white rounded-xl font-bold shadow-lg shadow-red-100"
+                >
+                  Delete
+                </button>
               </div>
             </motion.div>
           </div>

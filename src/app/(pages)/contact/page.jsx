@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { Navbar } from "@/components/layouts/navbar";
+import toast from "react-hot-toast";
 import {
   Mail,
   Phone,
@@ -21,13 +22,97 @@ const ContactPage = () => {
   const [dragActive, setDragActive] = useState(false);
   const fileInputRef = useRef(null);
 
+  // 1. Form State Handle karna
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    business_name: "",
+    email: "",
+    phone_number: "",
+    service_interested: "Business Electricity",
+    message: "",
+    bill_file: null,
+  });
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const data = new FormData();
+    data.append("first_name", formData.first_name);
+    data.append("last_name", formData.last_name);
+    data.append("business_name", formData.business_name);
+    data.append("email", formData.email);
+    data.append("phone_number", formData.phone_number);
+    data.append("service_interested", formData.service_interested);
+    data.append("message", formData.message);
+
+    if (formData.bill_file) {
+      data.append("bill_file", formData.bill_file);
+    }
+
+    try {
+      const response = await fetch("/api/add_edit_contact", {
+        method: "POST",
+        body: data,
+      });
+
+      if (response.ok) {
+        // Success Toast in English
+        toast.success("Success! Your request has been submitted.", {
+          icon: "🚀",
+        });
+
+        // Form reset logic
+        setFormData({
+          first_name: "",
+          last_name: "",
+          business_name: "",
+          email: "",
+          phone_number: "",
+          service_interested: "Business Electricity",
+          message: "",
+          bill_file: null,
+        });
+      } else {
+        // Error Toast in English
+        toast.error("Error: Failed to submit the form. Please try again.");
+      }
+    } catch (error) {
+      console.error("Submission Error:", error);
+      toast.error("Network Error! Please check your internet connection.");
+    } finally {
+      setLoading(false);
+    }
+  };
+  // 2. Input Change Handler
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // 3. File Selection Handler (Max 5MB)
+  const handleFileChange = (file) => {
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        alert("File size is too large! Please upload under 5MB.");
+        return;
+      }
+      setFormData((prev) => ({ ...prev, bill_file: file }));
+      console.log("File Selected:", file.name);
+    }
+  };
+
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
     transition: { duration: 0.5 },
   };
-
   return (
     <div className="min-h-screen bg-[#fcfdfd] text-[#1a4d4d]">
       <section
@@ -157,7 +242,7 @@ const ContactPage = () => {
             {...fadeInUp}
             className="lg:w-2/3 bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl shadow-gray-200/50 border border-gray-100"
           >
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-6" onSubmit={handleSubmit}>
               {/* Row 1: Names */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
@@ -166,6 +251,9 @@ const ContactPage = () => {
                   </label>
                   <input
                     type="text"
+                    name="first_name"
+                    value={formData.first_name}
+                    onChange={handleChange}
                     placeholder="John"
                     className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 bg-white text-[#1a4d4d] font-semibold focus:border-[#8b5aa6] outline-none transition-all shadow-sm"
                   />
@@ -176,6 +264,9 @@ const ContactPage = () => {
                   </label>
                   <input
                     type="text"
+                    name="last_name"
+                    value={formData.last_name}
+                    onChange={handleChange}
                     placeholder="Doe"
                     className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 bg-white text-[#1a4d4d] font-semibold focus:border-[#8b5aa6] outline-none transition-all shadow-sm"
                   />
@@ -190,6 +281,9 @@ const ContactPage = () => {
                   </label>
                   <input
                     type="text"
+                    name="business_name"
+                    value={formData.business_name}
+                    onChange={handleChange}
                     placeholder="Company Ltd"
                     className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 bg-white text-[#1a4d4d] font-semibold focus:border-[#8b5aa6] outline-none transition-all shadow-sm"
                   />
@@ -200,6 +294,9 @@ const ContactPage = () => {
                   </label>
                   <input
                     type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     placeholder="email@company.com"
                     className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 bg-white text-[#1a4d4d] font-semibold focus:border-[#8b5aa6] outline-none transition-all shadow-sm"
                   />
@@ -214,6 +311,9 @@ const ContactPage = () => {
                   </label>
                   <input
                     type="tel"
+                    name="phone_number"
+                    value={formData.phone_number}
+                    onChange={handleChange}
                     placeholder="+44 123 456 7890"
                     className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 bg-white text-[#1a4d4d] font-semibold focus:border-[#8b5aa6] outline-none transition-all shadow-sm"
                   />
@@ -223,11 +323,20 @@ const ContactPage = () => {
                     Service Interested In
                   </label>
                   <div className="relative">
-                    <select className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 bg-white text-[#1a4d4d] font-bold appearance-none cursor-pointer outline-none focus:border-[#8b5aa6] transition-all">
-                      <option>Business Electricity</option>
-                      <option>Business Gas</option>
-                      <option>Water Services</option>
-                      <option>General Consultancy</option>
+                    <select
+                      name="service_interested"
+                      value={formData.service_interested}
+                      onChange={handleChange}
+                      className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 bg-white text-[#1a4d4d] font-bold appearance-none cursor-pointer outline-none focus:border-[#8b5aa6] transition-all"
+                    >
+                      <option value="Business Electricity">
+                        Business Electricity
+                      </option>
+                      <option value="Business Gas">Business Gas</option>
+                      <option value="Water Services">Water Services</option>
+                      <option value="General Consultancy">
+                        General Consultancy
+                      </option>
                     </select>
                     <ChevronRight className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 rotate-90 text-[#1a4d4d] pointer-events-none" />
                   </div>
@@ -241,6 +350,9 @@ const ContactPage = () => {
                   How can our experts help?
                 </label>
                 <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   rows="4"
                   placeholder="Tell us about your current utility situation..."
                   className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 bg-white text-[#1a4d4d] font-semibold focus:border-[#8b5aa6] outline-none transition-all resize-none shadow-sm"
@@ -250,7 +362,12 @@ const ContactPage = () => {
               {/* Full Width: File Upload */}
               <div className="space-y-2">
                 <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d]">
-                  Attach Recent Bill (Optional)
+                  Attach Recent Bill (Optional){" "}
+                  {formData.bill_file && (
+                    <span className="text-[#8dae39] font-bold italic ml-2">
+                      - {formData.bill_file.name}
+                    </span>
+                  )}
                 </label>
                 <div
                   onDragOver={(e) => {
@@ -258,6 +375,13 @@ const ContactPage = () => {
                     setDragActive(true);
                   }}
                   onDragLeave={() => setDragActive(false)}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    setDragActive(false);
+                    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                      handleFileChange(e.dataTransfer.files[0]);
+                    }
+                  }}
                   onClick={() => fileInputRef.current.click()}
                   className={`border-2 border-dashed rounded-2xl p-8 flex flex-col items-center justify-center transition-all cursor-pointer ${dragActive ? "border-[#8dae39] bg-[#8dae39]/10" : "border-gray-300 bg-gray-50 hover:bg-white hover:border-[#8b5aa6]"}`}
                 >
@@ -265,22 +389,30 @@ const ContactPage = () => {
                     className={`w-10 h-10 mb-2 ${dragActive ? "text-[#8dae39]" : "text-gray-400"}`}
                   />
                   <p className="text-sm font-bold text-[#1a4d4d]">
-                    Drop bill here or{" "}
-                    <span className="text-[#8b5aa6] underline underline-offset-4">
-                      browse files
-                    </span>
+                    {formData.bill_file
+                      ? "File Selected!"
+                      : "Drop bill here or browse files"}
                   </p>
-                  <input type="file" ref={fileInputRef} className="hidden" />
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    className="hidden"
+                    onChange={(e) => handleFileChange(e.target.files[0])}
+                  />
                 </div>
               </div>
 
               {/* Submit Button */}
               <motion.button
+                type="submit"
+                disabled={loading}
                 whileHover={{ y: -3, backgroundColor: "#153d3d" }}
                 whileTap={{ scale: 0.97 }}
-                className="w-full py-6 bg-[#1a4d4d] text-white font-black text-xl rounded-2xl flex items-center justify-center gap-4 shadow-xl transition-all mt-4"
+                className={`w-full py-6 text-white font-black text-xl rounded-2xl flex items-center justify-center gap-4 shadow-xl transition-all mt-4 
+                ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#1a4d4d]"}`}
               >
-                Get My Free Audit <Send className="w-6 h-6" />
+                {loading ? "Sending Lead..." : "Get My Free Audit"}
+                <Send className={`w-6 h-6 ${loading ? "animate-pulse" : ""}`} />
               </motion.button>
             </form>
           </motion.div>
