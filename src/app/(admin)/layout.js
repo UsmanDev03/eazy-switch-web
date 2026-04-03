@@ -165,7 +165,17 @@ export default function DashboardLayout({ children }) {
         {/* --- FOOTER --- */}
         <footer className="p-6 text-center border-t border-gray-100 bg-white">
           <p className="text-[11px] text-gray-400 font-medium tracking-widest uppercase">
-            © 2026 Eazy Switch — All Rights Reserved. <span className="text-emerald-600 font-black italic ml-1">Powered by Teqnoor</span>
+            © 2026 Eazy Switch — All Rights Reserved. 
+            <span className="text-emerald-600 font-black italic ml-2">
+              <a 
+                href="https://www.teqnoor.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-emerald-700 transition-colors"
+              >
+                Powered by Teqnoor
+              </a>
+            </span>
           </p>
         </footer>
       </div>
