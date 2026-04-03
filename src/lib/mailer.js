@@ -9,16 +9,25 @@ export const transporter = nodemailer.createTransport({
     pass: "123Admin@123",
   },
   tls: {
-    rejectUnauthorized: false 
+    rejectUnauthorized: false
   }
 });
 
 export async function sendEmails(data) {
-  const { first_name, last_name, email, phone_number, service_interested, business_name, message, bill_url } = data;
+  const {
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    service_interested,
+    business_name,
+    message,
+    bill_url
+  } = data;
   const full_name = `${first_name} ${last_name}`;
-  
+
   const senderEmail = `"Eazy Switch Support" <megaplus@teqnoor.info>`;
-  const adminRecipient = "usmanadmin@yopmail.com"; 
+  const adminRecipient = "usmanadmin@yopmail.com";
 
   // --- Common Styles (Wahi purane) ---
   const mainContainer = "font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f9fafb; padding: 40px 10px;";
@@ -35,13 +44,11 @@ export async function sendEmails(data) {
     to: adminRecipient,
     subject: `🚀 New Lead: ${full_name} (${business_name})`,
     // Yahan hum attachment add kar rahe hain agar bill_url maujood hai
-    attachments: bill_url ? [
-      {
-        filename: 'utility-bill.png',
-        path: bill_url,
-        cid: 'billimage' // Ye ID niche img tag mein use hogi
-      }
-    ] : [],
+    attachments: bill_url ? [{
+      filename: 'utility-bill.png',
+      path: bill_url,
+      cid: 'billimage' // Ye ID niche img tag mein use hogi
+    }] : [],
     html: `
       <div style="${mainContainer}">
         <div style="${cardStyle}">
@@ -97,14 +104,46 @@ export async function sendEmails(data) {
       </div>`,
   };
 
-  // --- 2. User Email ---
+  // --- 2. User/Customer Email Content ---
   const userMail = {
     from: senderEmail,
     to: email,
-    subject: `We've Received Your Inquiry - Eazy Switch Limited`,
-    html: `... (Wahi purana code user mail ka) ...`,
-  };
+    subject: `Inquiry Received - Eazy Switch Limited`,
+    html: `
+      <div style="${mainContainer}">
+        <div style="${cardStyle}">
+          <div style="${headerStyle}">
+            <h1 style="margin:0; font-size: 24px;">Hi ${first_name}!</h1>
+            <p style="margin: 8px 0 0; opacity: 0.9; font-size: 14px;">We've received your inquiry.</p>
+          </div>
+          <div style="${bodyStyle}">
+            <p style="font-size: 16px; line-height: 1.6; color: #334155; margin-bottom: 25px;">
+              Thank you for reaching out to <strong>Eazy Switch Limited</strong>. Our consultants are already reviewing your requirements for <strong>${service_interested}</strong>.
+            </p>
+            
+            <div style="background: #ecf3f3; padding: 20px; border-radius: 15px; border-left: 4px solid #8dae39;">
+              <h4 style="margin: 0 0 10px 0; color: #1a4d4d; font-size: 14px;">What Happens Next?</h4>
+              <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #475569; line-height: 1.8;">
+                <li>One of our energy experts will analyze your request.</li>
+                <li>We will contact you via phone or email within 24 business hours.</li>
+                <li>We'll provide a free, no-obligation comparison and audit.</li>
+              </ul>
+            </div>
 
+            <p style="font-size: 14px; color: #64748b; margin-top: 30px; text-align: center;">
+              If you have any urgent questions, feel free to reply to this email.
+            </p>
+
+            <div style="text-align: center; margin-top: 40px; border-top: 1px solid #f1f5f9; padding-top: 20px;">
+              <p style="font-size: 12px; color: #94a3b8;">
+                © 2026 Eazy Switch Limited. All rights reserved.<br/>
+                Expert Utility Consultancy across the UK.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>`,
+  };
   return Promise.all([
     transporter.sendMail(adminMail),
     transporter.sendMail(userMail)
