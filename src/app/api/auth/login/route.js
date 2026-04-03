@@ -1,22 +1,15 @@
-import {
-  NextResponse
-} from "next/server";
+import { NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
 import bcrypt from "bcryptjs";
-import {
-  cookies
-} from "next/headers";
+import { cookies } from "next/headers";
 
 export async function POST(req) {
   try {
     const body = await req.json();
-    const {
-      email,
-      password
-    } = body;
+    const { email, password } = body;
 
     const client = await clientPromise;
-    const db = client.db("driving_school");
+    const db = client.db("eazy_switch");
 
     const user = await db.collection("users").findOne({
       email: email
@@ -46,7 +39,7 @@ export async function POST(req) {
       path: "/",
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      maxAge: 86400, // 1 day
+      maxAge: 86400, 
     });
 
     cookieStore.set("adminId", user._id.toString(), {
@@ -63,7 +56,7 @@ export async function POST(req) {
     });
 
   } catch (error) {
-    console.log("FULL_ERROR_LOG:", error);
+    console.log("LOGIN_ERROR_LOG:", error);
     return NextResponse.json({
       error: error.message
     }, {

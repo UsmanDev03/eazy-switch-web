@@ -24,8 +24,7 @@ const LoginPage = () => {
       });
 
       if (res.ok) {
-        // Dashboard path update (kyunke hum admin group use kar rahe hain)
-        router.push("/admin/dashboard"); 
+        router.push("/dashboard"); 
         router.refresh();
       } else {
         const data = await res.json();
