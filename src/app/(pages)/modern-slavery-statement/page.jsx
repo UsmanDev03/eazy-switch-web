@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Navbar } from "@/components/navba@/components/layouts/navbar";
+import { Navbar } from "@/components/layouts/navbar";
 import { CompanyInfo } from "@/components/company-info"; // Import the component
 import {
   ShieldAlert,
