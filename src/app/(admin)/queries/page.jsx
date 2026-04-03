@@ -16,6 +16,8 @@ import {
   Loader2,
   ChevronLeft,
   ChevronRight,
+  Briefcase,
+  Zap,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -61,11 +63,12 @@ const ContactQueries = () => {
     }
   };
 
-  // Search logic
+  // Search logic (Updated for new fields)
   const filteredQueries = queries.filter(
     (q) =>
-      q.full_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      q.area?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      q.first_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      q.last_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      q.business_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       q.email?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -75,7 +78,6 @@ const ContactQueries = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredQueries.slice(indexOfFirstItem, indexOfLastItem);
 
-  // Reset to page 1 when searching
   useEffect(() => {
     setCurrentPage(1);
   }, [searchQuery]);
@@ -85,16 +87,16 @@ const ContactQueries = () => {
       {/* HEADER SECTION */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
         <div>
-          <h1 className="text-3xl font-black text-gray-900 tracking-tight">Contact Queries</h1>
-          <p className="text-blue-600 text-[10px] font-bold uppercase tracking-[0.2em] mt-1">Inbox Management</p>
+          <h1 className="text-3xl font-black text-[#1a4d4d] tracking-tight">Consultancy Leads</h1>
+          <p className="text-[#8b5aa6] text-[10px] font-bold uppercase tracking-[0.2em] mt-1">Audit Inquiries Management</p>
         </div>
 
         <div className="relative w-full lg:max-w-md">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
           <input
             type="text"
-            placeholder="Search name, area or email..."
-            className="w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-2xl outline-none focus:ring-4 focus:ring-blue-50 focus:border-blue-500 transition-all shadow-sm text-sm"
+            placeholder="Search by name, business or email..."
+            className="w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-2xl outline-none focus:ring-4 focus:ring-[#8b5aa6]/10 focus:border-[#8b5aa6] transition-all shadow-sm text-sm"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -106,52 +108,49 @@ const ContactQueries = () => {
         <div className="overflow-x-auto">
           {loading ? (
             <div className="flex flex-col items-center justify-center p-20 space-y-4">
-              <Loader2 className="animate-spin text-blue-600" size={40} />
-              <p className="text-gray-400 font-bold text-xs uppercase tracking-widest">Loading Records...</p>
+              <Loader2 className="animate-spin text-[#1a4d4d]" size={40} />
+              <p className="text-gray-400 font-bold text-xs uppercase tracking-widest">Loading Inquiries...</p>
             </div>
           ) : (
             <>
               <table className="w-full text-left border-collapse min-w-[1000px]">
                 <thead>
                   <tr className="bg-gray-50/50 border-b border-gray-50">
-                    <th className="px-8 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">Student</th>
+                    <th className="px-8 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">Client Name</th>
+                    <th className="px-6 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">Business</th>
                     <th className="px-6 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">Email</th>
-                    <th className="px-6 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">Mobile</th>
-                    <th className="px-6 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">Area</th>
-                    <th className="px-6 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">Pref. Time</th>
+                    <th className="px-6 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">Service</th>
                     <th className="px-8 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50">
                   {currentItems.map((q) => (
-                    <tr key={q._id} className="hover:bg-blue-50/20 transition-colors group">
+                    <tr key={q._id} className="hover:bg-[#1a4d4d]/5 transition-colors group">
                       <td className="px-8 py-5">
                         <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-xs shadow-lg shadow-blue-100">
-                            {q.full_name?.charAt(0) || "U"}
+                          <div className="w-10 h-10 bg-[#1a4d4d] text-white rounded-xl flex items-center justify-center font-bold text-xs shadow-lg shadow-[#1a4d4d]/20">
+                            {q.first_name?.charAt(0) || "C"}
                           </div>
-                          <p className="text-sm font-black text-gray-900 leading-none">{q.full_name}</p>
+                          <p className="text-sm font-black text-gray-900 leading-none">{q.first_name} {q.last_name}</p>
                         </div>
                       </td>
-                      <td className="px-6 py-5 text-xs font-bold text-blue-500 underline decoration-blue-200">
-                        {q.email || "N/A"}
-                      </td>
-                      <td className="px-6 py-5 text-xs font-bold text-gray-600">{q.mobile_number}</td>
                       <td className="px-6 py-5 text-xs font-bold text-gray-600">
                         <div className="flex items-center gap-2">
-                          <MapPin size={14} className="text-blue-500" />
-                          {q.area}
+                          <Briefcase size={14} className="text-[#8b5aa6]" />
+                          {q.business_name}
                         </div>
                       </td>
+                      <td className="px-6 py-5 text-xs font-bold text-[#8b5aa6] underline decoration-[#8b5aa6]/20">
+                        {q.email || "N/A"}
+                      </td>
                       <td className="px-6 py-5">
-                        <div className="flex items-center gap-2 text-gray-500 text-[11px] font-bold">
-                          <Clock size={14} className="text-blue-400" />
-                          {q.preferred_time}
-                        </div>
+                        <span className="px-3 py-1 bg-[#8b5aa6]/10 text-[#8b5aa6] rounded-full text-[10px] font-black uppercase tracking-tighter">
+                          {q.service_interested}
+                        </span>
                       </td>
                       <td className="px-8 py-5 text-right">
                         <div className="flex items-center justify-end gap-2">
-                          <button onClick={() => setSelectedQuery(q)} className="p-2.5 text-blue-600 hover:bg-blue-50 rounded-xl transition-all">
+                          <button onClick={() => setSelectedQuery(q)} className="p-2.5 text-[#1a4d4d] hover:bg-[#1a4d4d]/10 rounded-xl transition-all">
                             <Eye size={18} />
                           </button>
                           <button onClick={() => setDeleteId(q._id)} className="p-2.5 text-red-400 hover:bg-red-50 rounded-xl transition-all">
@@ -185,7 +184,7 @@ const ContactQueries = () => {
                         onClick={() => setCurrentPage(i + 1)}
                         className={`w-9 h-9 rounded-xl text-xs font-bold transition-all ${
                           currentPage === i + 1
-                            ? "bg-blue-600 text-white shadow-lg shadow-blue-100"
+                            ? "bg-[#1a4d4d] text-white shadow-lg shadow-[#1a4d4d]/20"
                             : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"
                         }`}
                       >
@@ -211,6 +210,7 @@ const ContactQueries = () => {
           )}
         </div>
       </div>
+
       {/* --- DETAIL MODAL --- */}
       <AnimatePresence>
         {selectedQuery && (
@@ -220,7 +220,7 @@ const ContactQueries = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedQuery(null)}
-              className="fixed inset-0 bg-slate-900/40 backdrop-blur-md z-[100]"
+              className="fixed inset-0 bg-[#1a4d4d]/40 backdrop-blur-md z-[100]"
             />
             <motion.div
               initial={{ y: "-100%" }}
@@ -232,11 +232,11 @@ const ContactQueries = () => {
               <div className="p-8 md:p-12">
                 <div className="flex justify-between items-center mb-8">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center">
-                      <MessageCircle size={24} />
+                    <div className="w-12 h-12 bg-[#1a4d4d]/10 text-[#1a4d4d] rounded-2xl flex items-center justify-center">
+                      <Zap size={24} />
                     </div>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-blue-600">
-                      Query Details
+                    <span className="text-[10px] font-black uppercase tracking-widest text-[#1a4d4d]">
+                      Inquiry Details
                     </span>
                   </div>
                   <button
@@ -249,76 +249,53 @@ const ContactQueries = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                   <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100 flex items-center gap-3">
-                    <User size={16} className="text-blue-500" />
+                    <User size={16} className="text-[#8b5aa6]" />
                     <div>
-                      <p className="text-[9px] font-bold text-gray-400 uppercase">
-                        Student Name
-                      </p>
-                      <p className="text-sm font-bold text-gray-900">
-                        {selectedQuery.full_name}
-                      </p>
+                      <p className="text-[9px] font-bold text-gray-400 uppercase">Client Name</p>
+                      <p className="text-sm font-bold text-gray-900">{selectedQuery.first_name} {selectedQuery.last_name}</p>
                     </div>
                   </div>
                   <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100 flex items-center gap-3">
-                    <MapPin size={16} className="text-blue-500" />
+                    <Briefcase size={16} className="text-[#8b5aa6]" />
                     <div>
-                      <p className="text-[9px] font-bold text-gray-400 uppercase">
-                        Area
-                      </p>
-                      <p className="text-sm font-bold text-gray-900">
-                        {selectedQuery.area}
-                      </p>
+                      <p className="text-[9px] font-bold text-gray-400 uppercase">Business</p>
+                      <p className="text-sm font-bold text-gray-900">{selectedQuery.business_name}</p>
                     </div>
                   </div>
                   <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100 flex items-center gap-3">
-                    <Phone size={16} className="text-blue-500" />
+                    <Mail size={16} className="text-[#8b5aa6]" />
                     <div>
-                      <p className="text-[9px] font-bold text-gray-400 uppercase">
-                        Mobile Number
-                      </p>
-                      <p className="text-sm font-bold text-gray-900">
-                        {selectedQuery.mobile_number}
-                      </p>
+                      <p className="text-[9px] font-bold text-gray-400 uppercase">Email Address</p>
+                      <p className="text-sm font-bold text-gray-900">{selectedQuery.email}</p>
                     </div>
                   </div>
                   <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100 flex items-center gap-3">
-                    <Clock size={16} className="text-blue-500" />
+                    <Phone size={16} className="text-[#8b5aa6]" />
                     <div>
-                      <p className="text-[9px] font-bold text-gray-400 uppercase">
-                        Preferred Time
-                      </p>
-                      <p className="text-sm font-bold text-gray-900">
-                        {selectedQuery.preferred_time}
-                      </p>
+                      <p className="text-[9px] font-bold text-gray-400 uppercase">Phone Number</p>
+                      <p className="text-sm font-bold text-gray-900">{selectedQuery.phone_number}</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="p-8 bg-blue-600 rounded-[2.5rem] text-white shadow-xl shadow-blue-100 mb-8 relative overflow-hidden">
-                  <p className="text-[10px] font-black uppercase opacity-60 mb-3 tracking-widest">
-                    Message / Questions
-                  </p>
-                  <p className="text-lg leading-relaxed font-medium">
-                    "{selectedQuery.message}"
-                  </p>
+                <div className="p-8 bg-[#1a4d4d] rounded-[2.5rem] text-white shadow-xl shadow-[#1a4d4d]/10 mb-8 relative overflow-hidden">
+                  <p className="text-[10px] font-black uppercase opacity-60 mb-3 tracking-widest">Message / Situation</p>
+                  <p className="text-lg leading-relaxed font-medium italic">"{selectedQuery.message}"</p>
+                  <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
+                    <span className="text-[10px] font-bold uppercase tracking-widest">Service: {selectedQuery.service_interested}</span>
+                    {selectedQuery.bill_url && <span className="text-[10px] font-bold text-[#8dae39]">Bill Attached ✓</span>}
+                  </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  {/* <a
-                    href={`https://wa.me/${selectedQuery.mobile_number?.replace(/\D/g, "")}?text=Hello ${selectedQuery.full_name}, regarding your driving school request...`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 bg-[#25D366] text-white py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-[#20bd5a] transition-all flex items-center justify-center gap-3 shadow-lg shadow-green-100"
-                  ></a> */}
                   <a
-                    href="#"
-                    onClick={(e) => e.preventDefault()}
+                    href={`https://wa.me/${selectedQuery.phone_number?.replace(/\D/g, "")}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 bg-[#25D366] text-white py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-[#20bd5a] transition-all flex items-center justify-center gap-3 shadow-lg shadow-green-100"
                   >
                     <MessageCircle size={18} />
-                    Reply on WhatsApp
+                    Contact via WhatsApp
                   </a>
 
                   <button
@@ -337,7 +314,7 @@ const ContactQueries = () => {
       {/* --- DELETE MODAL --- */}
       <AnimatePresence>
         {deleteId && (
-          <div className="fixed inset-0 z-[120] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm px-4">
+          <div className="fixed inset-0 z-[120] flex items-center justify-center bg-[#1a4d4d]/60 backdrop-blur-sm px-4">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -347,25 +324,11 @@ const ContactQueries = () => {
               <div className="w-16 h-16 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <AlertTriangle size={32} />
               </div>
-              <h3 className="text-xl font-black text-gray-900">
-                Delete Permanently?
-              </h3>
-              <p className="text-gray-500 text-sm mb-8 mt-2">
-                Is inquiry ko delete karne ke baad data recover nahi hoga.
-              </p>
+              <h3 className="text-xl font-black text-[#1a4d4d]">Delete Inquery?</h3>
+              <p className="text-gray-500 text-sm mb-8 mt-2">Is data ko delete karne ke baad recover nahi kiya ja sakay ga.</p>
               <div className="flex gap-3">
-                <button
-                  onClick={() => setDeleteId(null)}
-                  className="flex-1 py-4 bg-gray-100 text-gray-600 rounded-xl font-bold"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={() => handleDelete(deleteId)}
-                  className="flex-1 py-4 bg-red-500 text-white rounded-xl font-bold shadow-lg shadow-red-100"
-                >
-                  Delete
-                </button>
+                <button onClick={() => setDeleteId(null)} className="flex-1 py-4 bg-gray-100 text-gray-600 rounded-xl font-bold">Cancel</button>
+                <button onClick={() => handleDelete(deleteId)} className="flex-1 py-4 bg-red-500 text-white rounded-xl font-bold shadow-lg shadow-red-100">Delete</button>
               </div>
             </motion.div>
           </div>
