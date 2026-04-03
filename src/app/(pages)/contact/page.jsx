@@ -158,17 +158,32 @@ const ContactPage = () => {
             className="lg:w-2/3 bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl shadow-gray-200/50 border border-gray-100"
           >
             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Row 1: Names */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d]">
-                    Full Name
+                    First Name
                   </label>
                   <input
                     type="text"
-                    placeholder="John Doe"
+                    placeholder="John"
                     className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 bg-white text-[#1a4d4d] font-semibold focus:border-[#8b5aa6] outline-none transition-all shadow-sm"
                   />
                 </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d]">
+                    Last Name
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Doe"
+                    className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 bg-white text-[#1a4d4d] font-semibold focus:border-[#8b5aa6] outline-none transition-all shadow-sm"
+                  />
+                </div>
+              </div>
+
+              {/* Row 2: Business & Email */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d]">
                     Business Name
@@ -179,12 +194,9 @@ const ContactPage = () => {
                     className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 bg-white text-[#1a4d4d] font-semibold focus:border-[#8b5aa6] outline-none transition-all shadow-sm"
                   />
                 </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-2">
                   <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d]">
-                    Work Email
+                    Email Address
                   </label>
                   <input
                     type="email"
@@ -192,35 +204,53 @@ const ContactPage = () => {
                     className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 bg-white text-[#1a4d4d] font-semibold focus:border-[#8b5aa6] outline-none transition-all shadow-sm"
                   />
                 </div>
+              </div>
+
+              {/* Row 3: Phone & Service */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d]">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    placeholder="+44 123 456 7890"
+                    className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 bg-white text-[#1a4d4d] font-semibold focus:border-[#8b5aa6] outline-none transition-all shadow-sm"
+                  />
+                </div>
                 <div className="space-y-2 relative">
                   <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d]">
                     Service Interested In
                   </label>
-                  <select className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 bg-white text-[#1a4d4d] font-bold appearance-none cursor-pointer outline-none focus:border-[#8b5aa6]">
-                    <option>Business Electricity</option>
-                    <option>Business Gas</option>
-                    <option>Water Services</option>
-                    <option>General Consultancy</option>
-                  </select>
-                  <ChevronRight className="w-5 h-5 absolute right-4 top-[70%] -translate-y-1/2 rotate-90 text-[#1a4d4d] pointer-events-none" />
+                  <div className="relative">
+                    <select className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 bg-white text-[#1a4d4d] font-bold appearance-none cursor-pointer outline-none focus:border-[#8b5aa6] transition-all">
+                      <option>Business Electricity</option>
+                      <option>Business Gas</option>
+                      <option>Water Services</option>
+                      <option>General Consultancy</option>
+                    </select>
+                    <ChevronRight className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 rotate-90 text-[#1a4d4d] pointer-events-none" />
+                  </div>
                 </div>
               </div>
 
+              {/* Full Width: Message Area */}
               <div className="space-y-2">
                 <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d] flex items-center gap-2">
-                  <MessageSquare className="w-5 h-5 text-[#8b5aa6]" /> How can
-                  our experts help?
+                  <MessageSquare className="w-5 h-5 text-[#8b5aa6]" />
+                  How can our experts help?
                 </label>
                 <textarea
                   rows="4"
-                  placeholder="Tell us about your current utility situation or any specific guidance you need..."
+                  placeholder="Tell us about your current utility situation..."
                   className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 bg-white text-[#1a4d4d] font-semibold focus:border-[#8b5aa6] outline-none transition-all resize-none shadow-sm"
                 ></textarea>
               </div>
 
+              {/* Full Width: File Upload */}
               <div className="space-y-2">
                 <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d]">
-                  Attach Recent Bill (Optional for Review)
+                  Attach Recent Bill (Optional)
                 </label>
                 <div
                   onDragOver={(e) => {
@@ -229,12 +259,12 @@ const ContactPage = () => {
                   }}
                   onDragLeave={() => setDragActive(false)}
                   onClick={() => fileInputRef.current.click()}
-                  className={`border-2 border-dashed rounded-2xl p-10 flex flex-col items-center justify-center transition-all cursor-pointer ${dragActive ? "border-[#8dae39] bg-[#8dae39]/10" : "border-gray-300 bg-gray-50 hover:bg-white"}`}
+                  className={`border-2 border-dashed rounded-2xl p-8 flex flex-col items-center justify-center transition-all cursor-pointer ${dragActive ? "border-[#8dae39] bg-[#8dae39]/10" : "border-gray-300 bg-gray-50 hover:bg-white hover:border-[#8b5aa6]"}`}
                 >
                   <UploadCloud
-                    className={`w-12 h-12 mb-3 ${dragActive ? "text-[#8dae39]" : "text-gray-400"}`}
+                    className={`w-10 h-10 mb-2 ${dragActive ? "text-[#8dae39]" : "text-gray-400"}`}
                   />
-                  <p className="text-base font-bold text-[#1a4d4d]">
+                  <p className="text-sm font-bold text-[#1a4d4d]">
                     Drop bill here or{" "}
                     <span className="text-[#8b5aa6] underline underline-offset-4">
                       browse files
@@ -244,12 +274,13 @@ const ContactPage = () => {
                 </div>
               </div>
 
+              {/* Submit Button */}
               <motion.button
                 whileHover={{ y: -3, backgroundColor: "#153d3d" }}
                 whileTap={{ scale: 0.97 }}
-                className="w-full py-6 bg-[#1a4d4d] text-white font-black text-xl rounded-2xl flex items-center justify-center gap-4 shadow-xl transition-all"
+                className="w-full py-6 bg-[#1a4d4d] text-white font-black text-xl rounded-2xl flex items-center justify-center gap-4 shadow-xl transition-all mt-4"
               >
-                Request Professional Review <Send className="w-6 h-6" />
+                Get My Free Audit <Send className="w-6 h-6" />
               </motion.button>
             </form>
           </motion.div>
