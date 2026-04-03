@@ -362,7 +362,7 @@ const ContactPage = () => {
               {/* Full Width: File Upload */}
               <div className="space-y-2">
                 <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d]">
-                  Attach Recent Bill (Optional){" "}
+                  Attach Recent Bill (Optional)
                   {formData.bill_file && (
                     <span className="text-[#8dae39] font-bold italic ml-2">
                       - {formData.bill_file.name}
@@ -383,16 +383,34 @@ const ContactPage = () => {
                     }
                   }}
                   onClick={() => fileInputRef.current.click()}
-                  className={`border-2 border-dashed rounded-2xl p-8 flex flex-col items-center justify-center transition-all cursor-pointer ${dragActive ? "border-[#8dae39] bg-[#8dae39]/10" : "border-gray-300 bg-gray-50 hover:bg-white hover:border-[#8b5aa6]"}`}
+                  className={`relative border-2 border-dashed rounded-2xl p-8 flex flex-col items-center justify-center transition-all cursor-pointer overflow-hidden min-h-[160px] ${
+                    dragActive
+                      ? "border-[#8dae39] bg-[#8dae39]/10"
+                      : "border-gray-300 bg-gray-50 hover:bg-white hover:border-[#8b5aa6]"
+                  }`}
                 >
-                  <UploadCloud
-                    className={`w-10 h-10 mb-2 ${dragActive ? "text-[#8dae39]" : "text-gray-400"}`}
-                  />
-                  <p className="text-sm font-bold text-[#1a4d4d]">
-                    {formData.bill_file
-                      ? "File Selected!"
-                      : "Drop bill here or browse files"}
-                  </p>
+                  {/* --- Yahan Image Visible Hogi --- */}
+                  {formData.bill_file &&
+                  formData.bill_file.type.startsWith("image/") ? (
+                    <img
+                      src={URL.createObjectURL(formData.bill_file)}
+                      alt="Preview"
+                      className="absolute inset-0 w-full h-full object-cover"
+                      onLoad={(e) => URL.revokeObjectURL(e.target.src)} // Memory clean karne ke liye
+                    />
+                  ) : (
+                    <>
+                      <UploadCloud
+                        className={`w-10 h-10 mb-2 ${dragActive ? "text-[#8dae39]" : "text-gray-400"}`}
+                      />
+                      <p className="text-sm font-bold text-[#1a4d4d]">
+                        {formData.bill_file
+                          ? "File Selected!"
+                          : "Drop bill here or browse files"}
+                      </p>
+                    </>
+                  )}
+
                   <input
                     type="file"
                     ref={fileInputRef}
@@ -401,7 +419,6 @@ const ContactPage = () => {
                   />
                 </div>
               </div>
-
               {/* Submit Button */}
               <motion.button
                 type="submit"
