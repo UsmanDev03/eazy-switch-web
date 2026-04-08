@@ -343,18 +343,29 @@ const ExpertisePage = () => {
 
       {/* Advocate Section */}
       <section className="py-20 bg-[#1a4d4d] text-white overflow-hidden relative">
-        <div className="container mx-auto px-6 max-w-6xl relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-1/2 space-y-6">
+        <div className="container mx-auto px-6 max-w-7xl relative z-10">
+          <div className="flex flex-col lg:flex-row items-start gap-16">
+            {/* Left Column: Heading and Main Description */}
+            <div className="lg:w-1/2 space-y-6 lg:sticky lg:top-24">
               <h2 className="text-3xl md:text-5xl font-black leading-tight">
                 More Than a Broker. <br />
-                <span className="text-[#8dae39]">Your Utility Advocate.</span>
+                <span className="text-[#8dae39]">
+                  Your Energy Procurement Partner.
+                </span>
               </h2>
               <p className="text-gray-300 text-lg font-light leading-relaxed">
-                "Our commitment doesn’t end at the contract. We review your
-                usage patterns, resolve disputes, and manage the entire LOA
-                process so you can focus on your business."
+                We don’t stop at securing your contract. Our commitment
+                continues as we actively manage your energy position—analysing
+                usage, identifying savings opportunities, and resolving
+                issues—while continuously reviewing your accounts and addressing
+                billing discrepancies.
               </p>
+              <p className="text-gray-300 text-lg font-light leading-relaxed border-l-2 border-[#8dae39] pl-4">
+                This proactive approach ensures your business benefits from the
+                most efficient and cost-effective energy strategy, so you can
+                focus on running your business.
+              </p>
+
               <div className="flex flex-wrap gap-4 pt-4">
                 <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-5 py-3 rounded-xl">
                   <Scale className="w-5 h-5 text-[#8dae39]" />
@@ -371,19 +382,39 @@ const ExpertisePage = () => {
               </div>
             </div>
 
-            <div className="lg:w-1/2 w-full grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Right Column: The 4 Detailed Boxes */}
+            <div className="lg:w-1/2 w-full grid grid-cols-1 gap-4">
               {[
-                "Billing Dispute Resolution",
-                "LOA Management",
-                "Contract Audits",
-                "Site Work Coordination",
+                {
+                  title: "Billing Dispute Resolution",
+                  desc: "We identify and resolve billing discrepancies on your behalf, working with suppliers to investigate issues and ensure any inaccuracies are corrected—helping protect your business from unnecessary costs.",
+                },
+                {
+                  title: "Account & Contract Management",
+                  desc: "We manage the ongoing administration of your energy accounts and contracts, handling supplier communications, documentation, and key contract processes to ensure everything runs smoothly and efficiently.",
+                },
+                {
+                  title: "Contract Audits & Reviews",
+                  desc: "We regularly review your energy contracts to assess competitiveness and suitability, highlighting opportunities to improve terms, pricing, and overall structure in line with your business needs.",
+                },
+                {
+                  title: "Energy Usage & Cost Optimisation",
+                  desc: "We analyse your energy usage to identify inefficiencies and opportunities for improvement, supporting you in making informed decisions that can help reduce costs and improve energy efficiency.",
+                },
               ].map((item, i) => (
                 <div
                   key={i}
-                  className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/5 flex items-start gap-4"
+                  className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/5 flex items-start gap-4 hover:bg-white/15 transition-all duration-300"
                 >
-                  <CheckCircle2 className="w-5 h-5 text-[#8dae39] shrink-0" />
-                  <span className="font-bold text-sm">{item}</span>
+                  <CheckCircle2 className="w-6 h-6 text-[#8dae39] shrink-0 mt-1" />
+                  <div className="space-y-2">
+                    <h3 className="font-bold text-lg text-white">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>

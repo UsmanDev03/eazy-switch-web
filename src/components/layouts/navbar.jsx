@@ -15,16 +15,17 @@ export function Navbar() {
     <>
       {/* 1. Announcement Bar - Ab Navbar ka hissa hai */}
       <div className="absolute top-0 left-0 right-0 z-50 bg-[#1a4d4d] text-white px-4 py-3 text-center text-xs md:text-sm flex items-center justify-center gap-2 border-b border-white/5">
-        <Sparkles className="w-4 h-4 text-amber-400 animate-pulse" />
-        <p>
-          <span className="font-semibold text-amber-400">
-            Zero Upfront Cost Solar:
+        <Sparkles className="w-4 h-4 text-[#8dae39] animate-pulse" />
+        <p className="leading-tight">
+          <span className="font-bold text-[#8dae39]">
+            Delivering Measurable Savings Through Smarter Energy Procurement:
           </span>{" "}
-          <span className="hidden sm:inline">
+          <span className="hidden sm:inline opacity-90 ml-1">
             Unlock sustainable savings for your business today
           </span>
-          <span className="sm:hidden text-[10px]">
-            Sustainable savings for your business
+          {/* Mobile view ke liye thora short version */}
+          <span className="sm:hidden text-[10px] opacity-90 ml-1">
+            Unlock sustainable savings today
           </span>
         </p>
       </div>
@@ -35,9 +36,8 @@ export function Navbar() {
           className="flex items-center justify-between"
           suppressHydrationWarning={true}
         >
-         <Link
+          <Link
             href="/"
-       
             className="relative flex items-center justify-center 
             w-[220px] md:w-[240px] h-[65px] md:h-[65px] 
             bg-white p-2 rounded-full md:rounded-x2

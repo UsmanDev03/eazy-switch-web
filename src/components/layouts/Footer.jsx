@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Zap, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Zap, Mail, Phone, MapPin, ArrowRight, Smartphone } from "lucide-react";
 import Image from "next/image";
 
 const footerLinks = {
@@ -14,7 +14,6 @@ const footerLinks = {
     { label: "New Connections", href: "/services/connections" },
     { label: "Solar", href: "/services/solar" },
     { label: "EV Charging", href: "/services/ev-charging" },
-    
   ],
   company: [
     { label: "About Us", href: "/about" },
@@ -39,16 +38,17 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand Column */}
+          {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link
               href="/"
               className="relative flex items-center justify-center 
-              w-[160px] md:w-[200px] h-[50px] md:h-[60px] 
-              bg-white p-2 rounded-xl mb-6
-              transition-all duration-300 hover:scale-105 active:scale-95
-              shadow-[0_4px_20px_rgba(255,255,255,0.15)] 
-              border border-white/10"
-              >
+    w-[160px] md:w-[200px] h-[50px] md:h-[60px] 
+    bg-white p-2 rounded-xl mb-6
+    transition-all duration-300 hover:scale-105 active:scale-95
+    shadow-[0_4px_20px_rgba(255,255,255,0.15)] 
+    border border-white/10"
+            >
               <Image
                 src="/logo/logo.png"
                 alt="Eazy Switch Logo"
@@ -62,23 +62,47 @@ export function Footer() {
               Empowering UK businesses with transparent energy solutions. We
               simplify procurement, reduce costs, and drive sustainability.
             </p>
+
             <div className="space-y-4 text-sm text-white/80">
+              {/* Email */}
               <div className="flex items-center gap-3 group cursor-pointer">
                 <Mail className="w-4 h-4 text-[#8dae39] group-hover:scale-110 transition-transform" />
-                <span className="group-hover:text-white transition-colors">
-                  hello@eazyswitch.co.uk
-                </span>
+                <a
+                  href="mailto:sultan@eazy-switch.com"
+                  className="group-hover:text-white transition-colors"
+                >
+                  sultan@eazy-switch.com
+                </a>
               </div>
+
+              {/* Landline Number */}
               <div className="flex items-center gap-3 group cursor-pointer">
                 <Phone className="w-4 h-4 text-[#8dae39] group-hover:scale-110 transition-transform" />
-                <span className="group-hover:text-white transition-colors">
-                  0800 123 4567
-                </span>
+                <a
+                  href="tel:02039610022"
+                  className="group-hover:text-white transition-colors"
+                >
+                  0203 961 0022
+                </a>
               </div>
+
+              {/* Mobile Number */}
               <div className="flex items-center gap-3 group cursor-pointer">
-                <MapPin className="w-4 h-4 text-[#8dae39] group-hover:scale-110 transition-transform" />
-                <span className="group-hover:text-white transition-colors">
-                  London, United Kingdom
+                <Smartphone className="w-4 h-4 text-[#8dae39] group-hover:scale-110 transition-transform" />
+                <a
+                  href="tel:07930506303"
+                  className="group-hover:text-white transition-colors"
+                >
+                  +44 793 050 6303
+                </a>
+              </div>
+
+              {/* Address */}
+              <div className="flex items-start gap-3 group cursor-pointer">
+                <MapPin className="w-4 h-4 text-[#8dae39] mt-0.5 group-hover:scale-110 transition-transform" />
+                <span className="group-hover:text-white transition-colors leading-relaxed">
+                  Unit 14 Clements Court, Clements Lane,
+                  <br /> Essex. IG1 2QY
                 </span>
               </div>
             </div>

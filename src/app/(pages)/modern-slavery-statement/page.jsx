@@ -198,10 +198,10 @@ const ModernSlaveryStatement = () => {
                     </p>
                   </div>
                   <a
-                    href="mailto:support@eazy-switch.com"
+                    href="mailto:sultan@eazy-switch.com"
                     className="bg-[#8dae39] text-white px-8 py-4 rounded-xl font-bold flex items-center gap-3 hover:bg-white hover:text-[#1a4d4d] transition-all"
                   >
-                    <Mail className="w-5 h-5" /> support@eazy-switch.com
+                    <Mail className="w-5 h-5" /> sultan@eazy-switch.com
                   </a>
                 </div>
               </div>

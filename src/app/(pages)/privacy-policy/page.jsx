@@ -265,10 +265,10 @@ const PrivacyPolicy = () => {
                 <p className="text-sm pt-2">
                   Contact:{" "}
                   <a
-                    href="mailto:privacy@eazy-switch.com"
+                    href="mailto:sultan@eazy-switch.com"
                     className="font-bold text-[#8dae39] hover:underline"
                   >
-                    privacy@eazy-switch.com
+                    sultan@eazy-switch.com
                   </a>
                 </p>
               </section>
@@ -295,7 +295,7 @@ const PrivacyPolicy = () => {
                   <div className="text-sm md:text-base space-y-3">
                     <p>
                       If you have concerns, contact{" "}
-                      <strong>privacy@eazy-switch.com</strong>. You also have
+                      <strong>sultan@eazy-switch.com</strong>. You also have
                       the right to lodge a complaint with the{" "}
                       <strong>Information Commissioner's Office (ICO)</strong>.
                     </p>

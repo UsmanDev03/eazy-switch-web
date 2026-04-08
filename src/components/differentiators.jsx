@@ -1,28 +1,29 @@
 "use client";
 
 import React from "react"
-import { Handshake, Zap, LifeBuoy, SearchCheck } from "lucide-react"
+// Icons ko naye titles ke mutabiq thora change kiya hai (e.g., LayoutDashboard for Centralised Management)
+import { Handshake, LayoutDashboard, ShieldCheck, SearchCheck } from "lucide-react"
 
 const differentiators = [
   {
     icon: Handshake,
-    title: "Partner, Not Sales",
-    description: "Building long-term trust, not just closing short-term deals.",
+    title: "Strategic Energy Partner",
+    description: "We act as a long-term energy partner, providing expert guidance, market insight, and ongoing support to help your business make informed decisions.",
   },
   {
-    icon: Zap,
-    title: "Direct Efficiency",
-    description: "Your entire energy portfolio managed under one expert roof.",
+    icon: LayoutDashboard,
+    title: "Centralised Energy Management",
+    description: "We manage your energy contracts, accounts, and processes in one place, giving you greater visibility and control across your entire portfolio.",
   },
   {
-    icon: LifeBuoy,
-    title: "Always On Your Side",
-    description: "Real people solving your billing and market issues instantly.",
+    icon: ShieldCheck,
+    title: "Proactive Support",
+    description: "We actively monitor your energy position, resolving issues and reviewing usage to ensure your business stays protected from unnecessary costs.",
   },
   {
     icon: SearchCheck,
-    title: "Zero Hidden Fees",
-    description: "Total transparency with upfront pricing—no surprises, ever.",
+    title: "Transparent & Fair Pricing",
+    description: "We operate with clear, upfront pricing and full transparency—so you always know exactly what you’re paying for, with no hidden surprises.",
   },
 ]
 
@@ -40,8 +41,8 @@ export function Differentiators() {
           <h2 className="text-3xl md:text-4xl font-bold text-[#1a4d4d] tracking-tight mt-3">
             The <span className="text-[#8b5aa6]">Eazy Switch</span> Advantage
           </h2>
-          <p className="mt-4 text-gray-500 font-medium text-sm md:text-base max-w-xl mx-auto">
-            Hassle-free energy management designed specifically for the modern UK business landscape.
+          <p className="mt-4 text-gray-500 font-medium text-sm md:text-base max-w-2xl mx-auto">
+            Hassle-free energy management designed for the modern UK business—focused on control, clarity, and measurable results.
           </p>
         </div>
 
