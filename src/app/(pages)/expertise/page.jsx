@@ -13,6 +13,8 @@ import {
   ShieldCheck,
   Building2,
   HeartHandshake,
+  Sun,
+  BatteryCharging,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -120,26 +122,48 @@ const ExpertisePage = () => {
       ],
     },
     {
-      title: "Solar & EV Solutions",
-      // SOLAR IMAGE CHANGED BELOW
+      title: "Commercial Solar PV",
       description:
         "Empowering UK businesses with on-site renewable generation. We provide strategic energy infrastructure and long-term cost stability.",
       image:
-        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=800",
-      icon: Zap,
+        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=1200&auto=format&fit=crop", 
+      icon: Sun,
       color: "#eab308",
       detailedFeatures: [
         {
-          head: "Commercial Solar PV",
-          desc: "Bespoke on-site generation with 25-year panel warranties.",
+          head: "Custom Installations",
+          desc: "Bespoke on-site generation tailored to your building's capacity.",
         },
         {
-          head: "EV Infrastructure",
-          desc: "Scalable charging solutions for staff, customers, and visitors.",
+          head: "Warranty & Support",
+          desc: "Long-term performance with 25-year panel warranties.",
         },
         {
-          head: "Investment Support",
+          head: "Financial ROI",
           desc: "Guidance on Capital Allowances, grants, and flexible finance.",
+        },
+      ],
+    },
+    {
+      title: "EV Charging Infrastructure",
+      description:
+        "Scalable charging solutions for staff, customers, and fleet vehicles. Future-proof your business premises.",
+      image:
+        "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=800&auto=format",
+      icon: BatteryCharging, 
+      color: "#22c55e", 
+      detailedFeatures: [
+        {
+          head: "Smart Charging",
+          desc: "Advanced software for monitoring usage and managing load.",
+        },
+        {
+          head: "Universal Access",
+          desc: "Scalable solutions for staff, customers, and visitors.",
+        },
+        {
+          head: "Grant Assistance",
+          desc: "Help with OZEV grants and government incentives.",
         },
       ],
     },

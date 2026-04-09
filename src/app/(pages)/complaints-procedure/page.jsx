@@ -101,7 +101,7 @@ const ComplaintsProcedure = () => {
                     <Mail className="text-[#8dae39] shrink-0" />
                     <div>
                       <h4 className="font-bold">Email Us</h4>
-                      <p className="text-gray-600">support@eazy-switch.com</p>
+                      <p className="text-gray-600">sultan@eazy-switch.com</p>
                     </div>
                   </div>
                   <div className="flex gap-4 p-5 bg-gray-50 rounded-2xl border border-gray-100 transition-hover hover:border-[#8dae39]/30">
