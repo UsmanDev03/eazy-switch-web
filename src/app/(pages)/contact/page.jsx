@@ -177,13 +177,13 @@ const ContactPage = () => {
                   {
                     icon: Mail,
                     label: "Email",
-                    val: "hello@eazyswitch.co.uk",
+                    val: "sultan@eazy-switch.com",
                     color: "#8b5aa6",
                   },
                   {
                     icon: Phone,
                     label: "Call",
-                    val: "+44 (0) 123 456 789",
+                    val: "+44 793 050 6303",
                     color: "#8dae39",
                   },
                 ].map((item, i) => (
@@ -247,11 +247,12 @@ const ContactPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d]">
-                    First Name
+                    First Name <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
                     name="first_name"
+                    required
                     value={formData.first_name}
                     onChange={handleChange}
                     placeholder="John"
@@ -260,11 +261,12 @@ const ContactPage = () => {
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d]">
-                    Last Name
+                    Last Name <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
                     name="last_name"
+                    required
                     value={formData.last_name}
                     onChange={handleChange}
                     placeholder="Doe"
@@ -277,7 +279,10 @@ const ContactPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d]">
-                    Business Name
+                    Business Name{" "}
+                    <span className="text-gray-400 text-xs normal-case">
+                      (Optional)
+                    </span>
                   </label>
                   <input
                     type="text"
@@ -290,11 +295,12 @@ const ContactPage = () => {
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d]">
-                    Email Address
+                    Email Address <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="email"
                     name="email"
+                    required
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="email@company.com"
@@ -307,11 +313,12 @@ const ContactPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d]">
-                    Phone Number
+                    Phone Number <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="tel"
                     name="phone_number"
+                    required
                     value={formData.phone_number}
                     onChange={handleChange}
                     placeholder="+44 123 456 7890"
@@ -320,20 +327,27 @@ const ContactPage = () => {
                 </div>
                 <div className="space-y-2 relative">
                   <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d]">
-                    Service Interested In
+                    Service Interested In{" "}
+                    <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
                     <select
                       name="service_interested"
+                      required
                       value={formData.service_interested}
                       onChange={handleChange}
                       className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 bg-white text-[#1a4d4d] font-bold appearance-none cursor-pointer outline-none focus:border-[#8b5aa6] transition-all"
                     >
+                      <option value="">Select a service</option>
                       <option value="Business Electricity">
                         Business Electricity
                       </option>
                       <option value="Business Gas">Business Gas</option>
                       <option value="Water Services">Water Services</option>
+                      <option value="Solar Services">Solar Services</option>
+                      <option value="EV Charging Services">
+                        EV Charging Services
+                      </option>
                       <option value="General Consultancy">
                         General Consultancy
                       </option>
@@ -347,10 +361,12 @@ const ContactPage = () => {
               <div className="space-y-2">
                 <label className="text-sm font-black uppercase tracking-widest text-[#1a4d4d] flex items-center gap-2">
                   <MessageSquare className="w-5 h-5 text-[#8b5aa6]" />
-                  How can our experts help?
+                  How can our experts help?{" "}
+                  <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   name="message"
+                  required
                   value={formData.message}
                   onChange={handleChange}
                   rows="4"
@@ -389,14 +405,13 @@ const ContactPage = () => {
                       : "border-gray-300 bg-gray-50 hover:bg-white hover:border-[#8b5aa6]"
                   }`}
                 >
-                  {/* --- Yahan Image Visible Hogi --- */}
                   {formData.bill_file &&
                   formData.bill_file.type.startsWith("image/") ? (
                     <img
                       src={URL.createObjectURL(formData.bill_file)}
                       alt="Preview"
                       className="absolute inset-0 w-full h-full object-cover"
-                      onLoad={(e) => URL.revokeObjectURL(e.target.src)} // Memory clean karne ke liye
+                      onLoad={(e) => URL.revokeObjectURL(e.target.src)}
                     />
                   ) : (
                     <>
@@ -410,7 +425,6 @@ const ContactPage = () => {
                       </p>
                     </>
                   )}
-
                   <input
                     type="file"
                     ref={fileInputRef}
@@ -419,6 +433,38 @@ const ContactPage = () => {
                   />
                 </div>
               </div>
+
+              {/* Human Verification Checkbox */}
+              <div className="flex items-start gap-3 px-2 py-2">
+                <div className="flex items-center h-5">
+                  <input
+                    id="human_verify"
+                    name="is_human"
+                    type="checkbox"
+                    required
+                    checked={formData.is_human || false}
+                    onChange={(e) => {
+                      handleChange({
+                        target: {
+                          name: "is_human",
+                          value: e.target.checked,
+                        },
+                      });
+                    }}
+                    className="w-5 h-5 rounded border-2 border-gray-300 text-[#8b5aa6] focus:ring-[#8b5aa6] cursor-pointer transition-all"
+                  />
+                </div>
+                <label
+                  htmlFor="human_verify"
+                  className="text-sm font-bold text-[#1a4d4d] cursor-pointer select-none"
+                >
+                  I am not a robot. <span className="text-red-500">*</span>
+                  <p className="text-[10px] text-gray-400 font-medium normal-case tracking-normal">
+                    Confirming you are a real person for security purposes.
+                  </p>
+                </label>
+              </div>
+
               {/* Submit Button */}
               <motion.button
                 type="submit"
@@ -426,7 +472,7 @@ const ContactPage = () => {
                 whileHover={{ y: -3, backgroundColor: "#153d3d" }}
                 whileTap={{ scale: 0.97 }}
                 className={`w-full py-6 text-white font-black text-xl rounded-2xl flex items-center justify-center gap-4 shadow-xl transition-all mt-4 
-                ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#1a4d4d]"}`}
+    ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#1a4d4d]"}`}
               >
                 {loading ? "Sending Lead..." : "Get My Free Audit"}
                 <Send className={`w-6 h-6 ${loading ? "animate-pulse" : ""}`} />
@@ -471,7 +517,8 @@ const ContactPage = () => {
                     Google Maps Integration
                   </p>
                   <p className="text-gray-500 text-sm mt-2">
-                    123 Business Way, London, EC1A 1BB
+                    Unit 14 Clements Court, Clements Lane,
+                    <br /> Essex. IG1 2QY
                   </p>
                 </div>
               </div>
@@ -505,10 +552,10 @@ const ContactPage = () => {
                   </h4>
                   <div className="space-y-4">
                     <p className="text-xl font-extrabold leading-tight">
-                      Switchboard: <br /> +44 (0) 123 456 789
+                      Switchboard: <br /> +44 793 050 6303
                     </p>
                     <p className="text-xl font-extrabold leading-tight">
-                      Support: <br /> support@eazyswitch.co.uk
+                      Support: <br /> sultan@eazy-switch.com
                     </p>
                   </div>
                 </div>
