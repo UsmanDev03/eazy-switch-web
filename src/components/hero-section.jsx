@@ -59,7 +59,7 @@ export function HeroSection() {
           <div className="group relative w-full max-w-2xl lg:max-w-3xl xl:max-w-4xl bg-white/[0.05] backdrop-blur-xl border border-white/10 rounded-[2.5rem] px-6 md:px-12 py-10 md:py-14 shadow-2xl text-center xl:text-left transition-all overflow-hidden">
             
             {/* --- BOLD Animated Border Line (Mobile & Tablet Only) --- */}
-            <div className="xl:hidden absolute inset-0 rounded-[2.5rem] pointer-events-none">
+            {/* <div className="xl:hidden absolute inset-0 rounded-[2.5rem] pointer-events-none">
               <div 
                 className="absolute inset-[-6px] rounded-[2.5rem] bg-gradient-to-r from-[#8dae39] via-[#8b5aa6] to-[#8dae39] opacity-60 animate-[spin_5s_linear_infinite]" 
                 style={{ 
@@ -69,8 +69,16 @@ export function HeroSection() {
                   border: '5px solid transparent' // Bold 5px border
                 }} 
               />
-            </div>
+            </div> */}
 
+            <div className="xl:hidden absolute inset-0 pointer-events-none">
+              <div 
+                className="absolute inset-x-[-6px] top-[-6px] bottom-[20%] bg-gradient-to-r from-[#8dae39] via-[#8b5aa6] to-[#8dae39] opacity-60 animate-[spin_5s_linear_infinite]" 
+                style={{
+                  clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%, 50% 0%, 52% 4%, 93% 97%, 7% 97%, 50% 5%)',
+                }} 
+              />
+            </div>
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-5 drop-shadow-md tracking-tight">
               A Smarter, Transparent Way to Secure Your{" "}
               <span className="text-[#8dae39]">Business Utilities</span>
