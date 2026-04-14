@@ -56,7 +56,7 @@ export function AboutSection() {
                 </Button>
               </Link>
 
-              <div className="flex items-center justify-center min-h-[60px] min-w-[210px] bg-[#f0f9f9] border border-[#d1e7e7] rounded-lg p-2 shadow-sm">
+              <div className="flex items-center justify-center min-h-[60px] min-w-[210px] bg-[#1a4d4d] border border-[#d1e7e7] rounded-lg p-2 shadow-md">
                 <div id="wcb" className="carbonbadge wcb-d" />
               </div>
             </div>
