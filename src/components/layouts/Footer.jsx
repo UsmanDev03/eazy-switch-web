@@ -4,6 +4,8 @@ import React from "react";
 import Link from "next/link";
 import { Zap, Mail, Phone, MapPin, ArrowRight, Smartphone } from "lucide-react";
 import Image from "next/image";
+import Script from "next/script";
+import ICOBadge from "../ICOBadge";
 
 const footerLinks = {
   // Direct services from your folder structure
@@ -35,6 +37,10 @@ export function Footer() {
       className="bg-[#1a4d4d] text-white border-t border-white/5"
       suppressHydrationWarning={true}
     >
+      <Script
+        src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js"
+        strategy="afterInteractive"
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand Column */}
@@ -43,11 +49,11 @@ export function Footer() {
             <Link
               href="/"
               className="relative flex items-center justify-center 
-    w-[160px] md:w-[200px] h-[50px] md:h-[60px] 
-    bg-white p-2 rounded-xl mb-6
-    transition-all duration-300 hover:scale-105 active:scale-95
-    shadow-[0_4px_20px_rgba(255,255,255,0.15)] 
-    border border-white/10"
+                        w-[160px] md:w-[200px] h-[50px] md:h-[60px] 
+                        bg-white p-2 rounded-xl mb-6
+                        transition-all duration-300 hover:scale-105 active:scale-95
+                        shadow-[0_4px_20px_rgba(255,255,255,0.15)] 
+                        border border-white/10"
             >
               <Image
                 src="/logo/logo.png"
@@ -164,14 +170,15 @@ export function Footer() {
                 </li>
               ))}
             </ul>
+            <ICOBadge registrationNumber="ZB123456" />
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-white/40 uppercase tracking-widest">
-          {/* Copyright & Powered By in one line */}
+        <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[11px] text-white/40 uppercase tracking-widest">
+          {/* Left Side: Copyright */}
           <p>
-            © 2026 Eazy-Switch Limited. All rights reserved. | Powered by{" "}
+            © 2026 Eazy Switch Limited. All rights reserved. | Powered by{" "}
             <a
               href="https://teqnoor.com"
               target="_blank"
@@ -182,10 +189,14 @@ export function Footer() {
             </a>
           </p>
 
-          <div className="flex gap-6">
+          {/* Right Side: Badge and Legal Link */}
+          <div className="flex flex-col sm:flex-row items-center gap-6">
+            {/* Carbon Badge Container */}
+            <div id="wcb" className="carbonbadge wcb-d" />
+
             <Link
               href="/modern-slavery-statement"
-              className="hover:text-[#8dae39] transition-colors"
+              className="hover:text-[#8dae39] transition-colors whitespace-nowrap"
             >
               Modern Slavery Statement
             </Link>

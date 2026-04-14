@@ -20,15 +20,14 @@ export function HeroSection() {
             alt="Smarter Business Utilities Background"
             fill
             priority
-            className="object-cover opacity-30" // Lower opacity to keep it professional
+            className="object-cover opacity-30"
             sizes="100vw"
           />
-          {/* Dark Teal Gradient Overlay to blend with your theme */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#1a4d4d] via-[#1a4d4d]/80 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1a4d4d]" />
         </div>
 
-        {/* --- 2. Wind Turbine Animation Layer --- */}
+        {/* --- 2. Wind Turbine Animation Layer (Desktop Only) --- */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
           <div
             className="absolute 
@@ -56,8 +55,22 @@ export function HeroSection() {
           className="relative z-30 px-4 md:px-8 lg:px-12 pt-32 md:pt-40 lg:pt-48 pb-20 md:pb-28 lg:pb-32 flex justify-center xl:justify-start flex-grow items-center min-h-[600px] lg:min-h-[800px]"
           suppressHydrationWarning={true}
         >
-          {/* Glassmorphism Card */}
-          <div className="w-full max-w-2xl lg:max-w-3xl xl:max-w-4xl bg-white/[0.05] backdrop-blur-xl border border-white/10 rounded-[2.5rem] px-6 md:px-12 py-10 md:py-14 shadow-2xl text-center xl:text-left transition-all">
+          {/* Glassmorphism Card with Bold Animated Border */}
+          <div className="group relative w-full max-w-2xl lg:max-w-3xl xl:max-w-4xl bg-white/[0.05] backdrop-blur-xl border border-white/10 rounded-[2.5rem] px-6 md:px-12 py-10 md:py-14 shadow-2xl text-center xl:text-left transition-all overflow-hidden">
+            
+            {/* --- BOLD Animated Border Line (Mobile & Tablet Only) --- */}
+            <div className="xl:hidden absolute inset-0 rounded-[2.5rem] pointer-events-none">
+              <div 
+                className="absolute inset-[-6px] rounded-[2.5rem] bg-gradient-to-r from-[#8dae39] via-[#8b5aa6] to-[#8dae39] opacity-60 animate-[spin_5s_linear_infinite]" 
+                style={{ 
+                  maskImage: 'linear-gradient(white, white), linear-gradient(white, white)', 
+                  maskClip: 'content-box, border-box', 
+                  maskComposite: 'exclude', 
+                  border: '5px solid transparent' // Bold 5px border
+                }} 
+              />
+            </div>
+
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-5 drop-shadow-md tracking-tight">
               A Smarter, Transparent Way to Secure Your{" "}
               <span className="text-[#8dae39]">Business Utilities</span>

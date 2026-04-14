@@ -150,7 +150,7 @@ export function ProcessSection() {
 
         {/* Minimal Trust Line */}
         <div className="mt-12 flex flex-wrap justify-center gap-8 md:gap-16 opacity-30 grayscale hover:grayscale-0 transition-all duration-500">
-           {["20+ Suppliers", "Secure SSL", "UK Owned", "Zero Fees"].map((item, i) => (
+           {["20+ Suppliers", "Privacy Protected", "UK Owned", "100% Free Consultation"].map((item, i) => (
              <span key={i} className="text-[10px] font-bold uppercase tracking-[0.2em]">{item}</span>
            ))}
         </div>

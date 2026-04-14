@@ -3,6 +3,8 @@
 import React from "react";
 import { Button } from "./ui/button";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import Script from "next/script";
 
 export function AboutSection() {
   return (
@@ -15,9 +17,16 @@ export function AboutSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div suppressHydrationWarning={true}>
+            {/* External Script for Carbon Badge */}
+            <Script
+              src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js"
+              strategy="afterInteractive"
+            />
+
             <h2 className="text-3xl sm:text-4xl font-bold text-[#1a4d4d] mb-6 text-balance">
               Energy consultants, helping you take control of business energy
             </h2>
+
             <div className="space-y-4 text-[#2d4a4a]">
               <p>
                 {
@@ -35,13 +44,22 @@ export function AboutSection() {
                 }
               </p>
             </div>
-            <Button
-              className="mt-8 bg-[#8b5aa6] hover:bg-[#724a8d] text-white"
-              size="lg"
-            >
-              Learn more about us
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
+
+            <div className="mt-8 flex flex-wrap items-center gap-6">
+              <Link href="/about" passHref>
+                <Button
+                  className="bg-[#8b5aa6] hover:bg-[#724a8d] text-white"
+                  size="lg"
+                >
+                  Learn more about us
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
+
+              <div className="flex lg:mt-6 items-center min-h-[50px] min-w-[200px]">
+                <div id="wcb" className="carbonbadge wcb-d" />
+              </div>
+            </div>
           </div>
 
           {/* Visual */}
@@ -49,9 +67,9 @@ export function AboutSection() {
             <div className="aspect-square rounded-2xl overflow-hidden bg-white border-4 border-white shadow-xl relative">
               <video
                 src="/media/video/eazyswitch-1.mp4"
-                autoPlay={false} 
+                autoPlay={false}
                 loop
-                controls 
+                controls
                 className="w-full h-full object-cover"
               />
 
