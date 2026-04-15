@@ -79,6 +79,27 @@ export function HeroSection() {
                 }} 
               />
             </div>
+
+            {/* <div className="xl:hidden absolute inset-0 pointer-events-none overflow-hidden z-0">
+              <div
+                className="absolute 
+                right-[-10%] 
+                top-[25%] 
+                opacity-25 
+                scale-[0.8]
+                md:right-[5%] 
+                md:top-[15%] 
+                md:scale-[1] 
+                md:opacity-30
+                
+                transition-all duration-700"
+                suppressHydrationWarning={true}
+              >
+                <div className="w-[250px] h-[350px] md:w-[400px] md:h-[550px]">
+                  <AnimatedWindTurbine size="w-full h-full" />
+                </div>
+              </div>
+            </div> */}
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-5 drop-shadow-md tracking-tight">
               A Smarter, Transparent Way to Secure Your{" "}
               <span className="text-[#8dae39]">Business Utilities</span>
