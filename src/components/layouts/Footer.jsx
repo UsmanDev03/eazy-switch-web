@@ -37,10 +37,6 @@ export function Footer() {
       className="bg-[#1a4d4d] text-white border-t border-white/5"
       suppressHydrationWarning={true}
     >
-      <Script
-        src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js"
-        strategy="afterInteractive"
-      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand Column */}
@@ -191,9 +187,6 @@ export function Footer() {
 
           {/* Right Side: Badge and Legal Link */}
           <div className="flex flex-col sm:flex-row items-center gap-6">
-            {/* Carbon Badge Container */}
-            <div id="wcb" className="carbonbadge wcb-d" />
-
             <Link
               href="/modern-slavery-statement"
               className="hover:text-[#8dae39] transition-colors whitespace-nowrap"

@@ -14,6 +14,8 @@ import {
   ChevronRight,
   MapPin,
   ExternalLink,
+  Smartphone,
+  PhoneCall,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -181,9 +183,15 @@ const ContactPage = () => {
                     color: "#8b5aa6",
                   },
                   {
-                    icon: Phone,
-                    label: "Call",
+                    icon: Smartphone,
+                    label: "Mobile",
                     val: "+44 793 050 6303",
+                    color: "#8dae39",
+                  },
+                  {
+                    icon: PhoneCall,
+                    label: "Landline",
+                    val: "0203 961 0022",
                     color: "#8dae39",
                   },
                 ].map((item, i) => (
@@ -551,14 +559,29 @@ const ContactPage = () => {
                     Direct Contact
                   </h4>
                   <div className="space-y-4">
+                    {/* Mobile/Switchboard */}
                     <p className="text-xl font-extrabold leading-tight">
-                      Switchboard: <br /> +44 793 050 6303
+                      Switchboard: <br />
+                      <span className="text-white/90">+44 793 050 6303</span>
                     </p>
+
+                    {/* Landline */}
                     <p className="text-xl font-extrabold leading-tight">
-                      Support: <br /> sultan@eazy-switch.com
+                      Direct Line: <br />
+                      <span className="text-white/90">0203 961 0022</span>
+                    </p>
+
+                    {/* Email */}
+                    <p className="text-xl font-extrabold leading-tight">
+                      Support: <br />
+                      <span className="text-white/90">
+                        sultan@eazy-switch.com
+                      </span>
                     </p>
                   </div>
                 </div>
+
+                {/* Background Decorative Icon */}
                 <div className="absolute -bottom-6 -right-6 opacity-10">
                   <Phone className="w-32 h-32 rotate-12" />
                 </div>
