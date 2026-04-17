@@ -119,8 +119,6 @@ const ContactQueries = () => {
             />
           </div>
 
-          {/* IS JAGAH PAR YE NEW CODE PASTE KAREIN (Pehle wale date div ko hata kar) */}
-
           <div className="flex items-center gap-2 w-full sm:w-auto">
             {/* From Date */}
             <div className="relative flex-1 sm:w-44">
