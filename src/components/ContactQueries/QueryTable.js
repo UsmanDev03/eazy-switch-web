@@ -1,7 +1,16 @@
 import React from "react";
-import { Eye, Trash2, Briefcase, Loader2, Maximize2 } from "lucide-react";
+import { Eye, Trash2, Briefcase, Loader2, Maximize2, Calendar } from "lucide-react";
 
 const QueryTable = ({ loading, currentItems = [], setSelectedQuery, setDeleteId, onImageClick, indexOfFirstItem }) => {
+  const formatDate = (dateString) => {
+    if (!dateString) return "N/A";
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+    });
+  };
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center p-20 space-y-4">
@@ -17,6 +26,7 @@ const QueryTable = ({ loading, currentItems = [], setSelectedQuery, setDeleteId,
         <thead>
           <tr className="bg-gray-50/50 border-b border-gray-50">
             <th className="px-6 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest w-16 text-center">#</th>
+            <th className="px-8 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">Date</th>
             <th className="px-8 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">Client Name</th>
             <th className="px-6 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">Business</th>
             <th className="px-6 py-5 text-[10px] font-black uppercase text-gray-400 tracking-widest">Email</th>
@@ -35,6 +45,12 @@ const QueryTable = ({ loading, currentItems = [], setSelectedQuery, setDeleteId,
               >
                 <td className="px-6 py-5 text-xs font-bold text-gray-400 text-center">
                   {indexOfFirstItem + index + 1}
+                </td>
+                <td className="px-8 py-5 text-[11px] font-bold text-gray-500 whitespace-nowrap">
+                  <div className="flex items-center gap-2">
+                    <Calendar size={12} className="text-[#1a4d4d]" />
+                    {formatDate(q.submittedAt || q.createdAt || q.date)}
+                  </div>
                 </td>
                 <td className="px-8 py-5 font-black text-sm text-gray-900">
                   {q.first_name} {q.last_name}
